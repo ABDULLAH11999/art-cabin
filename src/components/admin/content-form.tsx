@@ -94,7 +94,7 @@ export function ContentForm({ resource, id, initialData, nextOrderNumber }: Cont
 
   return (
     <form onSubmit={onSubmit} className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_360px]">
-      <section className="rounded-[2rem] border border-black/10 bg-white p-4 shadow-sm sm:p-6">
+      <section className="rounded-[2rem] border border-maroon/15 bg-white p-4 shadow-sm sm:p-6">
         <div className="flex items-start justify-between gap-3">
           <div>
             <p className="text-[11px] uppercase tracking-[0.35em] text-black/45">Content</p>
@@ -153,11 +153,11 @@ export function ContentForm({ resource, id, initialData, nextOrderNumber }: Cont
       </section>
 
       <aside className="space-y-6">
-        <section className="rounded-[2rem] border border-black/10 bg-black p-4 text-white shadow-sm sm:p-6">
+        <section className="rounded-[2rem] border border-maroon/15 bg-maroon p-4 text-white shadow-sm sm:p-6">
           <h2 className="font-heading text-2xl">Images</h2>
-          <p className="mt-1 text-sm text-white/65">Upload files or paste image URLs. The first image becomes the lead visual in the UI.</p>
+          <p className="mt-1 text-sm text-white/72">Upload files or paste image URLs. The first image becomes the lead visual in the UI.</p>
 
-          <label className="mt-5 flex cursor-pointer flex-col items-center justify-center rounded-[1.5rem] border border-dashed border-white/15 bg-white/5 px-4 py-8 text-center transition hover:border-white/30">
+          <label className="mt-5 flex cursor-pointer flex-col items-center justify-center rounded-[1.5rem] border border-dashed border-white/25 bg-white/10 px-4 py-8 text-center transition hover:border-white/40 hover:bg-white/15">
             <Upload className="h-6 w-6" />
             <span className="mt-2 text-sm font-semibold">Upload images</span>
             <span className="mt-1 text-xs text-white/50">{uploading ? "Uploading..." : "PNG, JPG, WebP"}</span>
@@ -169,9 +169,9 @@ export function ContentForm({ resource, id, initialData, nextOrderNumber }: Cont
               value={manualImage}
               onChange={(e) => setManualImage(e.target.value)}
               placeholder="Paste image URL"
-              className="min-w-0 flex-1 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white outline-none placeholder:text-white/35"
+              className="min-w-0 flex-1 rounded-2xl border border-white/20 bg-white px-4 py-3 text-black outline-none placeholder:text-black/35"
             />
-            <button type="button" onClick={addManualImage} className="rounded-2xl bg-white px-4 py-3 font-semibold text-black">
+            <button type="button" onClick={addManualImage} className="rounded-2xl bg-white px-4 py-3 font-semibold text-maroon">
               <Plus className="h-4 w-4" />
             </button>
           </div>
@@ -179,23 +179,23 @@ export function ContentForm({ resource, id, initialData, nextOrderNumber }: Cont
           <div className="mt-5 grid gap-3">
             {images.length ? (
               images.map((image, index) => (
-                <div key={`${image}-${index}`} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-2">
+                <div key={`${image}-${index}`} className="flex items-center gap-3 rounded-2xl border border-white/20 bg-white p-2 text-black">
                   <img src={image} alt="" className="h-14 w-14 rounded-xl object-cover" />
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-sm font-medium">{image}</p>
-                    <p className="text-xs text-white/45">Image {index + 1}</p>
+                    <p className="text-xs text-black/45">Image {index + 1}</p>
                   </div>
                   <button
                     type="button"
                     onClick={() => setImages((current) => current.filter((_, currentIndex) => currentIndex !== index))}
-                    className="rounded-xl border border-white/10 p-2 text-white/70 transition hover:bg-white/10 hover:text-white"
+                    className="rounded-xl border border-maroon/15 p-2 text-maroon transition hover:bg-maroon/5"
                   >
                     <X className="h-4 w-4" />
                   </button>
                 </div>
               ))
             ) : (
-              <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-6 text-sm text-white/55">
+              <div className="rounded-2xl border border-white/20 bg-white/10 px-4 py-6 text-sm text-white/75">
                 Add at least one image to publish this entry.
               </div>
             )}

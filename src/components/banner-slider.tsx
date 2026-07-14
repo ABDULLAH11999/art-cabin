@@ -61,7 +61,6 @@ export function BannerSlider({ desktopImages, mobileImages }: BannerSliderProps)
       <div className="relative overflow-hidden rounded-[2.5rem] border border-maroon/15 bg-[radial-gradient(circle_at_top,_rgba(110,31,52,0.18),_transparent_40%),linear-gradient(180deg,#fff,#f6ecef)] p-8 shadow-luxe">
         <div className="absolute right-8 top-8 h-28 w-28 rounded-full bg-maroon/10 blur-3xl" />
         <div className="relative flex min-h-[320px] flex-col justify-end rounded-[2rem] border border-maroon/15 bg-white/80 p-6 backdrop-blur-sm sm:min-h-[420px]">
-          <p className="text-[11px] uppercase tracking-[0.35em] text-black/45">Maroon Visual Story</p>
           <h2 className="mt-3 font-heading text-4xl text-maroon sm:text-5xl">Add desktop and mobile banners from the admin panel.</h2>
           <p className="mt-4 max-w-lg text-sm leading-7 text-black/65">
             Once images are added, this hero area will rotate them every 3 seconds without a full page refresh.

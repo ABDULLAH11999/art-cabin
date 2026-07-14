@@ -22,7 +22,7 @@ export default async function HomePage() {
           <div>
             <p className="inline-flex items-center gap-2 rounded-full border border-maroon/15 bg-maroon/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-maroon">
               <Sparkles className="h-4 w-4" />
-              Curated Art House
+              Art Cabin
             </p>
             <h1 className="mt-5 max-w-3xl font-heading text-5xl leading-none text-ink sm:text-6xl lg:text-8xl">
               {config.siteTitle}

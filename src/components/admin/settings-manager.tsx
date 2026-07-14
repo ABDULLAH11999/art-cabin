@@ -60,7 +60,7 @@ export function SettingsManager({ initialSettings }: { initialSettings: SiteConf
     toast.success("Backup download started");
   }
 
-  const inputClass = "rounded-2xl border border-black/10 px-4 py-3 outline-none transition focus:border-maroon";
+  const inputClass = "rounded-2xl border border-maroon/15 bg-white px-4 py-3 outline-none transition focus:border-maroon";
 
   return (
     <div className="space-y-6">
@@ -70,35 +70,35 @@ export function SettingsManager({ initialSettings }: { initialSettings: SiteConf
       </div>
 
       <div className="grid gap-6 xl:grid-cols-2">
-        <section className="rounded-[2rem] border border-black/10 bg-white p-4 shadow-sm sm:p-6">
+        <section className="rounded-[2rem] border border-maroon/15 bg-maroon p-4 text-white shadow-sm sm:p-6">
           <h2 className="font-heading text-2xl">Site Meta</h2>
           <div className="mt-5 grid gap-4">
             <label className="grid gap-2">
-              <span className="text-sm font-medium text-black/60">Site Title</span>
-              <input value={config.siteTitle} onChange={(e) => setConfig({ ...config, siteTitle: e.target.value })} className={inputClass} />
+              <span className="text-sm font-medium text-white/75">Site Title</span>
+              <input value={config.siteTitle} onChange={(e) => setConfig({ ...config, siteTitle: e.target.value })} className={`${inputClass} text-black`} />
             </label>
             <label className="grid gap-2">
-              <span className="text-sm font-medium text-black/60">Site Description</span>
+              <span className="text-sm font-medium text-white/75">Site Description</span>
               <textarea
                 rows={4}
                 value={config.siteDescription}
                 onChange={(e) => setConfig({ ...config, siteDescription: e.target.value })}
-                className={inputClass}
+                className={`${inputClass} text-black`}
               />
             </label>
             <label className="grid gap-2">
-              <span className="text-sm font-medium text-black/60">Keywords</span>
-              <input value={config.siteKeywords} onChange={(e) => setConfig({ ...config, siteKeywords: e.target.value })} className={inputClass} />
+              <span className="text-sm font-medium text-white/75">Keywords</span>
+              <input value={config.siteKeywords} onChange={(e) => setConfig({ ...config, siteKeywords: e.target.value })} className={`${inputClass} text-black`} />
             </label>
             <label className="grid gap-2">
-              <span className="text-sm font-medium text-black/60">Canonical URL</span>
-              <input value={config.canonicalUrl} onChange={(e) => setConfig({ ...config, canonicalUrl: e.target.value })} className={inputClass} />
+              <span className="text-sm font-medium text-white/75">Canonical URL</span>
+              <input value={config.canonicalUrl} onChange={(e) => setConfig({ ...config, canonicalUrl: e.target.value })} className={`${inputClass} text-black`} />
             </label>
           </div>
         </section>
 
-        <section className="rounded-[2rem] border border-black/10 bg-white p-4 shadow-sm sm:p-6">
-          <h2 className="font-heading text-2xl">Business Info</h2>
+        <section className="rounded-[2rem] border border-maroon/15 bg-white p-4 shadow-sm sm:p-6">
+          <h2 className="font-heading text-2xl text-maroon">Business Info</h2>
           <div className="mt-5 grid gap-4">
             <label className="grid gap-2">
               <span className="text-sm font-medium text-black/60">About Page Text</span>
@@ -120,7 +120,7 @@ export function SettingsManager({ initialSettings }: { initialSettings: SiteConf
         </section>
       </div>
 
-      <section className="rounded-[2rem] border border-black/10 bg-black p-4 text-white shadow-sm sm:p-6">
+      <section className="rounded-[2rem] border border-maroon/15 bg-maroon p-4 text-white shadow-sm sm:p-6">
         <h2 className="font-heading text-2xl">Database Backup</h2>
         <p className="mt-1 max-w-3xl text-sm leading-6 text-white/65">
           Download a JSON backup of the Art Cabin database, including settings, admin users, arts, exhibitions, and the legacy watch-store tables.
@@ -129,7 +129,7 @@ export function SettingsManager({ initialSettings }: { initialSettings: SiteConf
           <button
             onClick={downloadBackup}
             disabled={backingUp}
-            className="inline-flex items-center gap-2 rounded-2xl bg-white px-6 py-3 font-semibold text-black disabled:opacity-60"
+            className="inline-flex items-center gap-2 rounded-2xl bg-white px-6 py-3 font-semibold text-maroon disabled:opacity-60"
           >
             <Download className="h-4 w-4" />
             {backingUp ? "Preparing Backup..." : "Backup DB"}

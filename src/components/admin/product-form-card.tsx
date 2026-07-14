@@ -109,7 +109,7 @@ export function ProductFormCard({
 
       <div className="grid gap-6 xl:grid-cols-2">
         <div className="space-y-6">
-          <section className="rounded-3xl border border-black/10 bg-white p-5 shadow-sm">
+          <section className="rounded-3xl border border-maroon/15 bg-white p-5 shadow-sm">
             <h2 className="font-heading text-2xl">Basic Information</h2>
             <div className="mt-4 grid gap-4">
               <div className="grid gap-2">
@@ -122,12 +122,12 @@ export function ProductFormCard({
               </div>
               <div className="grid gap-2">
                 <label className="text-sm font-medium text-black/60">Slug</label>
-                <div className="rounded-2xl border border-black/10 bg-black/5 px-4 py-3 text-sm text-black/60">{slugPreview}</div>
+                <div className="rounded-2xl border border-maroon/15 bg-maroon/5 px-4 py-3 text-sm text-black/60">{slugPreview}</div>
               </div>
             </div>
           </section>
 
-          <section className="rounded-3xl border border-black/10 bg-white p-5 shadow-sm">
+          <section className="rounded-3xl border border-maroon/15 bg-white p-5 shadow-sm">
             <h2 className="font-heading text-2xl">Description</h2>
             <div className="mt-4">
               <TiptapEditor
@@ -139,7 +139,7 @@ export function ProductFormCard({
         </div>
 
         <div className="space-y-6">
-          <section className="rounded-3xl border border-black/10 bg-white p-5 shadow-sm">
+          <section className="rounded-3xl border border-maroon/15 bg-white p-5 shadow-sm">
             <h2 className="font-heading text-2xl">Pricing & Status</h2>
             <div className="mt-4 grid gap-4 sm:grid-cols-2">
               <div className="grid gap-2">
@@ -179,29 +179,29 @@ export function ProductFormCard({
             </div>
           </section>
 
-          <section className="rounded-3xl border border-black/10 bg-white p-5 shadow-sm">
+          <section className="rounded-3xl border border-maroon/15 bg-maroon p-5 text-white shadow-sm">
             <h2 className="font-heading text-2xl">Media</h2>
             <div className="mt-4 grid gap-4">
               <div className="grid gap-2">
-                <label className="text-sm font-medium text-black/60">Video URL</label>
+                <label className="text-sm font-medium text-white/75">Video URL</label>
                 <input
                   value={form.videoUrl || ""}
                   onChange={(e) => setForm({ ...form, videoUrl: e.target.value })}
                   placeholder="Optional"
-                  className="rounded-2xl border px-4 py-3"
+                  className="rounded-2xl border border-white/20 bg-white px-4 py-3 text-black"
                 />
               </div>
-              <label className="rounded-2xl border border-dashed p-4">
+              <label className="rounded-2xl border border-dashed border-white/25 bg-white/10 p-4">
                 <div className="flex items-center justify-between gap-3">
-                  <span className="text-sm text-black/60">Gallery images</span>
-                  <span className="text-xs text-black/40">{uploading ? "Uploading..." : "Cloudinary"}</span>
+                  <span className="text-sm text-white/80">Gallery images</span>
+                  <span className="text-xs text-white/55">{uploading ? "Uploading..." : "Cloudinary"}</span>
                 </div>
                 <div className="mt-3 flex flex-wrap gap-3">
                   <input ref={fileInputRef} type="file" multiple accept="image/*" onChange={(e) => handleUpload(e.target.files)} className="w-full text-sm" />
                   <button
                     type="button"
                     onClick={() => fileInputRef.current?.click()}
-                    className="rounded-full bg-black px-4 py-2 text-xs font-semibold text-white"
+                    className="rounded-full bg-white px-4 py-2 text-xs font-semibold text-maroon"
                   >
                     Add More Images
                   </button>
@@ -209,12 +209,12 @@ export function ProductFormCard({
               </label>
               <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
                 {form.images.map((image) => (
-                  <div key={image} className="relative overflow-hidden rounded-2xl border">
+                  <div key={image} className="relative overflow-hidden rounded-2xl border border-white/20 bg-white">
                     <MediaImage src={image} alt="uploaded" width={200} height={200} className="h-24 w-full object-cover" />
                     <button
                       type="button"
                       onClick={() => removeImage(image)}
-                      className="absolute right-2 top-2 rounded-full bg-black/80 px-2 py-1 text-[10px] font-semibold text-white"
+                      className="absolute right-2 top-2 rounded-full bg-maroon px-2 py-1 text-[10px] font-semibold text-white"
                     >
                       Remove
                     </button>
@@ -224,7 +224,7 @@ export function ProductFormCard({
             </div>
           </section>
 
-            <button onClick={save} disabled={saving} className="w-full rounded-2xl bg-black px-4 py-4 font-semibold text-white transition hover:bg-black/90 disabled:opacity-60">
+            <button onClick={save} disabled={saving} className="w-full rounded-2xl bg-maroon px-4 py-4 font-semibold text-white transition hover:bg-maroonSoft disabled:opacity-60">
               {saving ? "Saving..." : isEdit ? "Update Product" : "Create Product"}
             </button>
         </div>

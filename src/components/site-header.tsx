@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Menu, X, Sparkles } from "lucide-react";
+import { Menu, X, Palette, Instagram } from "lucide-react";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -32,12 +32,9 @@ export function SiteHeader() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 lg:px-8">
         <Link href="/" className="flex items-center gap-3">
           <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/15 bg-white/10 text-white shadow-luxe">
-            <Sparkles className="h-5 w-5" />
+            <Palette className="h-5 w-5" />
           </div>
-          <span>
-            <span className="block font-heading text-xl font-semibold tracking-wide text-white">Art Cabin</span>
-            <span className="block text-xs uppercase tracking-[0.3em] text-white/75">Maroon Gallery</span>
-          </span>
+          <span className="block font-heading text-xl font-semibold tracking-wide text-white">Art Cabin</span>
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
@@ -51,8 +48,9 @@ export function SiteHeader() {
         <div className="flex items-center gap-3">
           <Link
             href="/contact"
-            className="hidden rounded-full border border-white/35 bg-white px-4 py-2 text-sm font-semibold text-maroon transition hover:bg-white/90 sm:inline-flex"
+            className="hidden items-center gap-2 rounded-full border border-white/35 bg-white px-4 py-2 text-sm font-semibold text-maroon transition hover:bg-white/90 sm:inline-flex"
           >
+            <Instagram className="h-4 w-4" />
             Get Connected
           </Link>
           <button className="text-white md:hidden" onClick={() => setOpen((value) => !value)} aria-label="Menu">
@@ -77,9 +75,10 @@ export function SiteHeader() {
           </nav>
           <Link
             href="/contact"
-            className="mt-4 inline-flex rounded-full bg-white px-4 py-3 text-sm font-semibold text-maroon"
+            className="mt-4 inline-flex items-center gap-2 rounded-full bg-white px-4 py-3 text-sm font-semibold text-maroon"
             onClick={() => setOpen(false)}
           >
+            <Instagram className="h-4 w-4" />
             Get Connected
           </Link>
         </div>
