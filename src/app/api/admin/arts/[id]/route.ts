@@ -30,6 +30,7 @@ export async function PUT(request: Request, { params }: { params: { id: string }
         title: payload.title,
         description: payload.description,
         paintingType: payload.paintingType,
+        isFeatured: payload.isFeatured,
         orderNumber: payload.orderNumber,
         images: payload.images,
         slug

@@ -7,6 +7,7 @@ export type ArtContent = {
   slug: string;
   description: string;
   paintingType: string;
+  isFeatured: boolean;
   orderNumber: number;
   images: string[];
 };
@@ -27,6 +28,7 @@ export const fallbackArts: ArtContent[] = [
     slug: "quiet-maroon-horizon-1",
     description: "An atmospheric composition balancing maroon light, layered brushwork, and calm negative space for a gallery-like pause.",
     paintingType: "Acrylic on Canvas",
+    isFeatured: true,
     orderNumber: 1,
     images: ["/ui-images/art-1.svg", "/ui-images/art-2.svg"]
   },
@@ -36,6 +38,7 @@ export const fallbackArts: ArtContent[] = [
     slug: "paper-bloom-study-2",
     description: "A textured study built around gesture, shadow, and soft contrast to echo the tactile energy of handmade contemporary work.",
     paintingType: "Mixed Media",
+    isFeatured: false,
     orderNumber: 2,
     images: ["/ui-images/art-3.svg"]
   }
@@ -73,6 +76,23 @@ export async function getSafeArts(limit?: number) {
   } catch {
     return fallbackArts.slice(0, limit || fallbackArts.length);
   }
+}
+
+export async function getSafeFeaturedArts(limit?: number) {
+  try {
+    const arts = await prisma.art.findMany({
+      where: { isFeatured: true },
+      orderBy: [{ orderNumber: "asc" }, { createdAt: "desc" }],
+      take: limit
+    });
+
+    if (arts.length) {
+      return arts;
+    }
+  } catch {}
+
+  const fallbackFeatured = fallbackArts.filter((art) => art.isFeatured);
+  return fallbackFeatured.slice(0, limit || fallbackFeatured.length);
 }
 
 export async function getSafeExhibitions(limit?: number) {

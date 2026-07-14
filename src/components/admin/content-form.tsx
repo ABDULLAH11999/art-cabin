@@ -15,6 +15,7 @@ type ContentFormProps = {
     title?: string;
     description?: string;
     paintingType?: string;
+    isFeatured?: boolean;
     orderNumber?: number;
     images?: string[];
   };
@@ -30,6 +31,7 @@ export function ContentForm({ resource, id, initialData, nextOrderNumber }: Cont
   const [title, setTitle] = useState(initialData?.title || "");
   const [description, setDescription] = useState(initialData?.description || "");
   const [paintingType, setPaintingType] = useState(initialData?.paintingType || "");
+  const [isFeatured, setIsFeatured] = useState(Boolean(initialData?.isFeatured));
   const [orderNumber, setOrderNumber] = useState(String(initialData?.orderNumber || nextOrderNumber));
   const [images, setImages] = useState<string[]>(initialData?.images || []);
   const [manualImage, setManualImage] = useState("");
@@ -75,6 +77,7 @@ export function ContentForm({ resource, id, initialData, nextOrderNumber }: Cont
         title,
         description,
         paintingType: isArt ? paintingType : undefined,
+        isFeatured: isArt ? isFeatured : false,
         orderNumber: Number(orderNumber),
         images
       })
@@ -117,15 +120,32 @@ export function ContentForm({ resource, id, initialData, nextOrderNumber }: Cont
           </label>
 
           {isArt ? (
-            <label className="grid gap-2">
-              <span className="text-sm font-medium text-black/60">Painting Type</span>
-              <input
-                value={paintingType}
-                onChange={(e) => setPaintingType(e.target.value)}
-                className="rounded-2xl border border-black/10 px-4 py-3 outline-none transition focus:border-maroon"
-                placeholder="Acrylic on Canvas"
-              />
-            </label>
+            <>
+              <label className="grid gap-2">
+                <span className="text-sm font-medium text-black/60">Painting Type</span>
+                <input
+                  value={paintingType}
+                  onChange={(e) => setPaintingType(e.target.value)}
+                  className="rounded-2xl border border-black/10 px-4 py-3 outline-none transition focus:border-maroon"
+                  placeholder="Acrylic on Canvas"
+                />
+              </label>
+
+              <label className="flex items-start gap-3 rounded-[1.5rem] border border-maroon/15 bg-maroon/5 px-4 py-4">
+                <input
+                  type="checkbox"
+                  checked={isFeatured}
+                  onChange={(e) => setIsFeatured(e.target.checked)}
+                  className="mt-1 h-4 w-4 rounded border-maroon/30 text-maroon focus:ring-maroon"
+                />
+                <span>
+                  <span className="block text-sm font-semibold text-maroon">Featured Post</span>
+                  <span className="mt-1 block text-sm leading-6 text-black/60">
+                    Show this art inside featured sections and use its main image as a banner fallback when no banner image is added.
+                  </span>
+                </span>
+              </label>
+            </>
           ) : null}
 
           <label className="grid gap-2">

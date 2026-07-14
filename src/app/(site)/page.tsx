@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, Instagram, Sparkles } from "lucide-react";
-import { getSafeArts, getSafeExhibitions, getSafeSiteConfig } from "@/lib/art-content";
+import { getSafeArts, getSafeExhibitions, getSafeFeaturedArts, getSafeSiteConfig } from "@/lib/art-content";
 import { MediaImage } from "@/components/media-image";
 import { BannerSlider } from "@/components/banner-slider";
 import { getBannerSettings } from "@/lib/settings";
@@ -8,12 +8,15 @@ import { getBannerSettings } from "@/lib/settings";
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  const [config, featuredArts, featuredExhibitions, bannerSettings] = await Promise.all([
+  const [config, featuredArts, allArts, featuredExhibitions, bannerSettings] = await Promise.all([
     getSafeSiteConfig(),
+    getSafeFeaturedArts(3),
     getSafeArts(3),
     getSafeExhibitions(2),
     getBannerSettings()
   ]);
+  const resolvedFeaturedArts = featuredArts.length ? featuredArts : allArts;
+  const fallbackBannerImages = Array.isArray(resolvedFeaturedArts[0]?.images) ? resolvedFeaturedArts[0].images.map(String) : [];
 
   return (
     <div className="bg-white">
@@ -44,7 +47,11 @@ export default async function HomePage() {
 
           <div className="relative">
             <div className="absolute -left-4 top-6 h-24 w-24 rounded-full bg-maroon/10 blur-3xl" />
-            <BannerSlider desktopImages={bannerSettings.desktopImages} mobileImages={bannerSettings.mobileImages} />
+            <BannerSlider
+              desktopImages={bannerSettings.desktopImages}
+              mobileImages={bannerSettings.mobileImages}
+              fallbackImages={fallbackBannerImages}
+            />
           </div>
         </div>
       </section>
@@ -60,7 +67,7 @@ export default async function HomePage() {
           </Link>
         </div>
         <div className="mt-6 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {featuredArts.map((art) => (
+          {resolvedFeaturedArts.map((art) => (
             <Link
               key={art.id}
               href={`/art/${art.slug}`}

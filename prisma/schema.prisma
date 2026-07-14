@@ -48,6 +48,7 @@ model Art {
   slug         String   @unique
   description   String   @db.Text
   paintingType  String
+  isFeatured    Boolean  @default(false)
   orderNumber   Int
   images        Json
   createdAt     DateTime @default(now())

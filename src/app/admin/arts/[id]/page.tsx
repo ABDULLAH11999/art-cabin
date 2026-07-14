@@ -18,6 +18,7 @@ export default async function EditArtPage({ params }: { params: { id: string } }
         title: art.title,
         description: art.description,
         paintingType: art.paintingType,
+        isFeatured: art.isFeatured,
         orderNumber: art.orderNumber,
         images: Array.isArray(art.images) ? art.images.map(String) : []
       }}

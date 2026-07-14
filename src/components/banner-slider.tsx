@@ -6,6 +6,7 @@ import { MediaImage } from "@/components/media-image";
 type BannerSliderProps = {
   desktopImages: string[];
   mobileImages: string[];
+  fallbackImages?: string[];
 };
 
 function useRotatingIndex(total: number) {
@@ -52,11 +53,13 @@ function BannerTrack({
   );
 }
 
-export function BannerSlider({ desktopImages, mobileImages }: BannerSliderProps) {
-  const desktopActiveIndex = useRotatingIndex(desktopImages.length);
-  const mobileActiveIndex = useRotatingIndex(mobileImages.length);
+export function BannerSlider({ desktopImages, mobileImages, fallbackImages = [] }: BannerSliderProps) {
+  const resolvedDesktopImages = desktopImages.length ? desktopImages : fallbackImages;
+  const resolvedMobileImages = mobileImages.length ? mobileImages : fallbackImages;
+  const desktopActiveIndex = useRotatingIndex(resolvedDesktopImages.length);
+  const mobileActiveIndex = useRotatingIndex(resolvedMobileImages.length);
 
-  if (!desktopImages.length && !mobileImages.length) {
+  if (!resolvedDesktopImages.length && !resolvedMobileImages.length) {
     return (
       <div className="relative overflow-hidden rounded-[2.5rem] border border-maroon/15 bg-[radial-gradient(circle_at_top,_rgba(110,31,52,0.18),_transparent_40%),linear-gradient(180deg,#fff,#f6ecef)] p-8 shadow-luxe">
         <div className="absolute right-8 top-8 h-28 w-28 rounded-full bg-maroon/10 blur-3xl" />
@@ -74,10 +77,21 @@ export function BannerSlider({ desktopImages, mobileImages }: BannerSliderProps)
     <div className="space-y-4">
       {desktopImages.length ? (
         <div className="relative hidden overflow-hidden rounded-[2.5rem] border border-maroon/15 bg-white shadow-luxe md:block">
-          <BannerTrack images={desktopImages} activeIndex={desktopActiveIndex} className="relative h-[540px] w-full" />
-          {desktopImages.length > 1 ? (
+          <BannerTrack images={resolvedDesktopImages} activeIndex={desktopActiveIndex} className="relative h-[540px] w-full" />
+          {resolvedDesktopImages.length > 1 ? (
             <div className="absolute bottom-5 left-1/2 flex -translate-x-1/2 gap-2 rounded-full bg-white/85 px-3 py-2 backdrop-blur-sm">
-              {desktopImages.map((image, index) => (
+              {resolvedDesktopImages.map((image, index) => (
+                <span key={`${image}-desktop-dot`} className={`h-2.5 w-2.5 rounded-full ${index === desktopActiveIndex ? "bg-maroon" : "bg-maroon/25"}`} />
+              ))}
+            </div>
+          ) : null}
+        </div>
+      ) : resolvedDesktopImages.length ? (
+        <div className="relative hidden overflow-hidden rounded-[2.5rem] border border-maroon/15 bg-white shadow-luxe md:block">
+          <BannerTrack images={resolvedDesktopImages} activeIndex={desktopActiveIndex} className="relative h-[540px] w-full" />
+          {resolvedDesktopImages.length > 1 ? (
+            <div className="absolute bottom-5 left-1/2 flex -translate-x-1/2 gap-2 rounded-full bg-white/85 px-3 py-2 backdrop-blur-sm">
+              {resolvedDesktopImages.map((image, index) => (
                 <span key={`${image}-desktop-dot`} className={`h-2.5 w-2.5 rounded-full ${index === desktopActiveIndex ? "bg-maroon" : "bg-maroon/25"}`} />
               ))}
             </div>
@@ -87,10 +101,21 @@ export function BannerSlider({ desktopImages, mobileImages }: BannerSliderProps)
 
       {mobileImages.length ? (
         <div className="relative overflow-hidden rounded-[2rem] border border-maroon/15 bg-white shadow-luxe md:hidden">
-          <BannerTrack images={mobileImages} activeIndex={mobileActiveIndex} className="relative h-[420px] w-full" />
-          {mobileImages.length > 1 ? (
+          <BannerTrack images={resolvedMobileImages} activeIndex={mobileActiveIndex} className="relative h-[420px] w-full" />
+          {resolvedMobileImages.length > 1 ? (
             <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2 rounded-full bg-white/85 px-3 py-2 backdrop-blur-sm">
-              {mobileImages.map((image, index) => (
+              {resolvedMobileImages.map((image, index) => (
+                <span key={`${image}-mobile-dot`} className={`h-2.5 w-2.5 rounded-full ${index === mobileActiveIndex ? "bg-maroon" : "bg-maroon/25"}`} />
+              ))}
+            </div>
+          ) : null}
+        </div>
+      ) : resolvedMobileImages.length ? (
+        <div className="relative overflow-hidden rounded-[2rem] border border-maroon/15 bg-white shadow-luxe md:hidden">
+          <BannerTrack images={resolvedMobileImages} activeIndex={mobileActiveIndex} className="relative h-[420px] w-full" />
+          {resolvedMobileImages.length > 1 ? (
+            <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2 rounded-full bg-white/85 px-3 py-2 backdrop-blur-sm">
+              {resolvedMobileImages.map((image, index) => (
                 <span key={`${image}-mobile-dot`} className={`h-2.5 w-2.5 rounded-full ${index === mobileActiveIndex ? "bg-maroon" : "bg-maroon/25"}`} />
               ))}
             </div>
