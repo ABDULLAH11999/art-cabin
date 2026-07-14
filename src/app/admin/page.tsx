@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { prisma } from "@/lib/prisma";
-import { Palette, GalleryHorizontal, Settings2, Sparkles, Image, ChartColumn } from "lucide-react";
+import Link from "next/link";
+import { GalleryHorizontal, Sparkles } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -40,28 +40,6 @@ export default async function AdminDashboardPage() {
           <p className="mt-4 max-w-2xl text-sm leading-6 text-white/78 md:text-base">
             Manage the curated settings, art portfolio, and exhibitions from a calm maroon-and-white admin workspace.
           </p>
-        </div>
-        <div className="mt-6 flex flex-wrap gap-3">
-          <Link href="/admin/arts/new" className="inline-flex items-center gap-2 rounded-2xl bg-white px-5 py-3 font-semibold text-maroon">
-            <Palette className="h-4 w-4" />
-            Create Art
-          </Link>
-          <Link href="/admin/exhibitions/new" className="inline-flex items-center gap-2 rounded-2xl border border-white/25 px-5 py-3 font-semibold text-white">
-            <GalleryHorizontal className="h-4 w-4" />
-            Create Exhibition
-          </Link>
-          <Link href="/admin/settings" className="inline-flex items-center gap-2 rounded-2xl border border-white/25 px-5 py-3 font-semibold text-white">
-            <Settings2 className="h-4 w-4" />
-            Update Settings
-          </Link>
-          <Link href="/admin/banners" className="inline-flex items-center gap-2 rounded-2xl bg-white px-5 py-3 font-semibold text-maroon">
-            <Image className="h-4 w-4" />
-            Manage Banners
-          </Link>
-          <Link href="/admin/visitors" className="inline-flex items-center gap-2 rounded-2xl border border-white/25 px-5 py-3 font-semibold text-white">
-            <ChartColumn className="h-4 w-4" />
-            View Visitors
-          </Link>
         </div>
       </section>
 

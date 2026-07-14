@@ -39,7 +39,7 @@ const bottomTabs: NavLink[] = [
   { href: "/admin/arts", label: "Arts", icon: Palette },
   { href: "/admin/exhibitions", label: "Expo", icon: GalleryHorizontal },
   { href: "/admin/banners", label: "Banner", icon: Image },
-  { href: "/admin/visitors", label: "Visit", icon: ChartColumn }
+  { href: "/admin/settings", label: "Settings", icon: Settings }
 ];
 
 function getPageMeta(pathname: string | null) {
@@ -159,11 +159,10 @@ export function AdminShell({
 
               <div className="flex items-center gap-2 lg:hidden">
                 <Link
-                  href="/"
-                  target="_blank"
+                  href="/admin/settings"
                   className="rounded-2xl border border-maroon px-3 py-2 text-[11px] font-semibold text-maroon"
                 >
-                  Visit
+                  Settings
                 </Link>
                 <button
                   onClick={() => signOut({ callbackUrl: "/admin/login" })}
