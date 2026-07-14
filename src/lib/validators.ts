@@ -85,3 +85,8 @@ export const siteConfigSchema = z.object({
   instagramLink: z.string().trim().min(3),
   contactNumber: z.string().trim().min(3)
 });
+
+export const bannerSettingsSchema = z.object({
+  desktopImages: z.array(z.string().trim().min(1)).default([]),
+  mobileImages: z.array(z.string().trim().min(1)).default([])
+});

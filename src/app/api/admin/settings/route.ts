@@ -14,11 +14,11 @@ export async function GET() {
   const record = await prisma.siteSettings.findUnique({ where: { key: SETTINGS_KEY } });
   const fallback = {
     siteTitle: "Art Cabin",
-    siteDescription: "A contemporary art house curating paintings, exhibitions, and collector-led visual stories.",
+    siteDescription: "A contemporary art house curating original paintings, exhibitions, and visual stories through a refined maroon-led identity.",
     siteKeywords: "art cabin, paintings, exhibition, portfolio, maroon art, contemporary art",
     canonicalUrl: "",
     aboutText:
-      "Art Cabin is a focused space for paintings and exhibition storytelling, combining gallery presentation with a refined digital experience.",
+      "Art Cabin is a contemporary visual studio that shares original paintings, curated exhibitions, and custom art stories through a calm maroon-led identity. The practice brings together expressive brushwork, made-to-order pieces, and gallery-style presentation for collectors, interior spaces, and anyone drawn to thoughtful modern art.",
     contactEmail: "hello@artcabin.com",
     instagramLink: "https://instagram.com/",
     contactNumber: "+92 300 0000000"

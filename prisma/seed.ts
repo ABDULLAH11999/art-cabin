@@ -28,7 +28,7 @@ async function main() {
     siteKeywords: "art cabin, paintings, exhibition, portfolio, maroon art, contemporary art",
     canonicalUrl: "http://localhost:3000",
     aboutText:
-      "Art Cabin is a focused space for paintings and exhibition storytelling, combining gallery presentation with a refined digital experience.",
+      "Art Cabin is a contemporary visual studio that shares original paintings, curated exhibitions, and custom art stories through a calm maroon-led identity. The practice brings together expressive brushwork, made-to-order pieces, and gallery-style presentation for collectors, interior spaces, and anyone drawn to thoughtful modern art.",
     contactEmail: "hello@artcabin.com",
     instagramLink: "https://instagram.com/",
     contactNumber: "+92 300 0000000"
@@ -38,6 +38,17 @@ async function main() {
     where: { key: "siteConfig" },
     create: { key: "siteConfig", value: JSON.stringify(siteConfig, null, 2) },
     update: { value: JSON.stringify(siteConfig, null, 2) }
+  });
+
+  await prisma.siteSettings.upsert({
+    where: { key: "bannerSettings" },
+    create: {
+      key: "bannerSettings",
+      value: JSON.stringify({ desktopImages: [], mobileImages: [] }, null, 2)
+    },
+    update: {
+      value: JSON.stringify({ desktopImages: [], mobileImages: [] }, null, 2)
+    }
   });
 
   const arts = [

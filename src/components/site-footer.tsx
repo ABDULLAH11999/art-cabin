@@ -26,7 +26,7 @@ export function SiteFooter() {
   }, []);
 
   return (
-    <footer className="border-t border-black/10 bg-ink text-white">
+    <footer className="border-t border-maroon/20 bg-maroon text-white">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 lg:grid-cols-4 lg:px-8">
         <div className="space-y-4">
           <div className="font-heading text-3xl text-white">{config.siteTitle || "Art Cabin"}</div>
@@ -48,11 +48,11 @@ export function SiteFooter() {
           <h3 className="mb-4 font-heading text-xl text-white">Contact</h3>
           <div className="space-y-3 text-sm text-white/75">
             <p className="flex items-center gap-2">
-              <Phone className="h-4 w-4 text-maroonSoft" />
+              <Phone className="h-4 w-4 text-white/90" />
               {config.contactNumber || "Phone not set"}
             </p>
             <p className="flex items-center gap-2">
-              <Mail className="h-4 w-4 text-maroonSoft" />
+              <Mail className="h-4 w-4 text-white/90" />
               {config.contactEmail || "Email not set"}
             </p>
           </div>
@@ -65,7 +65,7 @@ export function SiteFooter() {
               aria-label="Instagram"
               target={config.instagramLink ? "_blank" : undefined}
               rel={config.instagramLink ? "noreferrer" : undefined}
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 px-4 py-3 transition hover:border-maroon hover:bg-maroon"
+              className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-3 transition hover:bg-white/20"
             >
               <Instagram className="h-4 w-4" />
               Instagram
@@ -74,7 +74,7 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-white/10 py-4 text-center text-xs text-white/50">
-        © {new Date().getFullYear()} Art Cabin. All rights reserved.
+        Copyright {new Date().getFullYear()} Art Cabin. All rights reserved.
       </div>
     </footer>
   );

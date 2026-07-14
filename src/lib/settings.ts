@@ -49,19 +49,38 @@ export type SiteConfig = {
   contactNumber: string;
 };
 
+export type BannerSettings = {
+  desktopImages: string[];
+  mobileImages: string[];
+};
+
 const defaultSiteConfig: SiteConfig = {
   siteTitle: "Art Cabin",
-  siteDescription: "A contemporary art house curating paintings, exhibitions, and visual stories.",
+  siteDescription: "A contemporary art house curating original paintings, exhibitions, and visual stories through a refined maroon-led identity.",
   siteKeywords: "art cabin, paintings, exhibition, portfolio, contemporary art, maroon art",
   canonicalUrl: "",
   aboutText:
-    "Art Cabin brings together curated paintings, immersive exhibitions, and expressive visual storytelling for collectors and admirers of modern art.",
+    "Art Cabin is a contemporary visual studio that shares original paintings, curated exhibitions, and custom art stories through a calm maroon-led identity. The practice brings together expressive brushwork, made-to-order pieces, and gallery-style presentation for collectors, interior spaces, and anyone drawn to thoughtful modern art.",
   contactEmail: "hello@artcabin.com",
   instagramLink: "https://instagram.com/",
   contactNumber: "+92 300 0000000"
 };
 
+const defaultBannerSettings: BannerSettings = {
+  desktopImages: [],
+  mobileImages: []
+};
+
 export async function getSiteConfig() {
   const config = await getSetting<SiteConfig>("siteConfig", defaultSiteConfig);
   return { ...defaultSiteConfig, ...config };
+}
+
+export async function getBannerSettings() {
+  const settings = await getSetting<BannerSettings>("bannerSettings", defaultBannerSettings);
+
+  return {
+    desktopImages: Array.isArray(settings.desktopImages) ? settings.desktopImages : [],
+    mobileImages: Array.isArray(settings.mobileImages) ? settings.mobileImages : []
+  };
 }

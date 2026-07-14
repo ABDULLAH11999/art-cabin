@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
-import { Palette, GalleryHorizontal, Settings2, Sparkles } from "lucide-react";
+import { Palette, GalleryHorizontal, Settings2, Sparkles, Image, ChartColumn } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -22,10 +22,11 @@ function StatCard({
 }
 
 export default async function AdminDashboardPage() {
-  const [artCount, exhibitionCount, settingsCount, recentArts, recentExhibitions] = await Promise.all([
+  const [artCount, exhibitionCount, settingsCount, visitorCount, recentArts, recentExhibitions] = await Promise.all([
     prisma.art.count().catch(() => 0),
     prisma.exhibition.count().catch(() => 0),
     prisma.siteSettings.count().catch(() => 0),
+    prisma.visitorSession.count().catch(() => 0),
     prisma.art.findMany({ orderBy: { createdAt: "desc" }, take: 3 }).catch(() => []),
     prisma.exhibition.findMany({ orderBy: { createdAt: "desc" }, take: 3 }).catch(() => [])
   ]);
@@ -53,13 +54,22 @@ export default async function AdminDashboardPage() {
             <Settings2 className="h-4 w-4" />
             Update Settings
           </Link>
+          <Link href="/admin/banners" className="inline-flex items-center gap-2 rounded-2xl bg-maroon px-5 py-3 font-semibold text-white">
+            <Image className="h-4 w-4" />
+            Manage Banners
+          </Link>
+          <Link href="/admin/visitors" className="inline-flex items-center gap-2 rounded-2xl border border-maroon px-5 py-3 font-semibold text-maroon">
+            <ChartColumn className="h-4 w-4" />
+            View Visitors
+          </Link>
         </div>
       </section>
 
-      <section className="grid gap-3 sm:grid-cols-3">
+      <section className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
         <StatCard label="Arts" value={String(artCount)} href="/admin/arts" />
         <StatCard label="Exhibitions" value={String(exhibitionCount)} href="/admin/exhibitions" />
         <StatCard label="Settings Rows" value={String(settingsCount)} href="/admin/settings" />
+        <StatCard label="Site Visitors" value={String(visitorCount)} href="/admin/visitors" />
       </section>
 
       <section className="grid gap-6 xl:grid-cols-2">

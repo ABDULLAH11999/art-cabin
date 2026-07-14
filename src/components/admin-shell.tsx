@@ -10,6 +10,8 @@ import {
   ImagePlus,
   GalleryHorizontal,
   Settings,
+  Image,
+  ChartColumn,
   ChevronRight,
   LogOut,
   Sparkles
@@ -27,15 +29,17 @@ const sidebarItems: NavLink[] = [
   { href: "/admin/arts", label: "Arts", icon: Palette },
   { href: "/admin/arts/new", label: "Create Art", icon: ImagePlus },
   { href: "/admin/exhibitions", label: "Exhibitions", icon: GalleryHorizontal },
+  { href: "/admin/banners", label: "Banners", icon: Image },
+  { href: "/admin/visitors", label: "Visitors", icon: ChartColumn },
   { href: "/admin/settings", label: "Settings", icon: Settings }
 ];
 
 const bottomTabs: NavLink[] = [
   { href: "/admin", label: "Home", icon: LayoutDashboard },
   { href: "/admin/arts", label: "Arts", icon: Palette },
-  { href: "/admin/arts/new", label: "New", icon: ImagePlus },
   { href: "/admin/exhibitions", label: "Expo", icon: GalleryHorizontal },
-  { href: "/admin/settings", label: "Settings", icon: Settings }
+  { href: "/admin/banners", label: "Banner", icon: Image },
+  { href: "/admin/visitors", label: "Visit", icon: ChartColumn }
 ];
 
 function getPageMeta(pathname: string | null) {
@@ -45,6 +49,8 @@ function getPageMeta(pathname: string | null) {
   if (pathname?.startsWith("/admin/exhibitions/new")) return { title: "Create Exhibition", crumb: "Exhibitions / Create" };
   if (pathname?.startsWith("/admin/exhibitions/")) return { title: "Edit Exhibition", crumb: "Exhibitions / Edit" };
   if (pathname?.startsWith("/admin/exhibitions")) return { title: "Exhibitions", crumb: "Catalog / Exhibitions" };
+  if (pathname?.startsWith("/admin/banners")) return { title: "Banners", crumb: "Content / Banners" };
+  if (pathname?.startsWith("/admin/visitors")) return { title: "Visitors", crumb: "Analytics / Visitors" };
   if (pathname?.startsWith("/admin/settings")) return { title: "Settings", crumb: "Configuration / Settings" };
   return { title: "Dashboard", crumb: "Overview / Dashboard" };
 }

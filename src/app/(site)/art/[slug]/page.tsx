@@ -31,9 +31,9 @@ export default async function ArtDetailPage({ params }: { params: { slug: string
           </div>
         </div>
 
-        <div className="rounded-[2rem] border border-black/10 bg-white p-5 shadow-sm sm:p-6">
-          <p className="text-[11px] uppercase tracking-[0.35em] text-black/45">
-            {art.paintingType} • #{art.orderNumber}
+        <div className="rounded-[2rem] border border-maroon/15 bg-white p-5 shadow-sm sm:p-6">
+          <p className="text-[11px] uppercase tracking-[0.35em] text-maroon">
+            {art.paintingType} - #{art.orderNumber}
           </p>
           <h1 className="mt-3 font-heading text-4xl sm:text-6xl">{art.title}</h1>
           <p className="mt-5 text-base leading-8 text-black/65">{art.description}</p>

@@ -31,7 +31,7 @@ export default async function OrderSuccessPage({ params }: { params: { orderNumb
       <h1 className="mt-3 font-heading text-5xl">Thank you {order.customer.name}!</h1>
       <p className="mt-4 text-lg text-black/65">Your order {order.orderNumber} has been placed.</p>
       <p className="mt-2 text-black/65">Our team will contact you on {order.customer.phone} to confirm delivery.</p>
-      <div className="mt-10 rounded-3xl border border-black/10 bg-white p-6 text-left shadow-sm">
+      <div className="mt-10 rounded-3xl border border-maroon/15 bg-white p-6 text-left shadow-sm">
         <h2 className="font-heading text-2xl">Order Summary</h2>
         <div className="mt-4 space-y-3">
           {items.map((item, index) => (
@@ -48,7 +48,7 @@ export default async function OrderSuccessPage({ params }: { params: { orderNumb
           <span>{formatPKR(Number(order.total))}</span>
         </div>
       </div>
-      <Link href="/collections" className="mt-10 inline-flex rounded-full bg-black px-6 py-3 font-semibold text-white transition hover:bg-zinc-800">
+      <Link href="/collections" className="mt-10 inline-flex rounded-full bg-maroon px-6 py-3 font-semibold text-white transition hover:bg-maroonSoft">
         Continue Shopping
       </Link>
     </div>

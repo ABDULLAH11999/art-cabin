@@ -19,7 +19,8 @@ export async function GET() {
     orders: await prisma.order.findMany().catch(() => []),
     customers: await prisma.customer.findMany().catch(() => []),
     testimonials: await prisma.testimonial.findMany().catch(() => []),
-    emailLogs: await prisma.emailLog.findMany().catch(() => [])
+    emailLogs: await prisma.emailLog.findMany().catch(() => []),
+    visitorSessions: await prisma.visitorSession.findMany().catch(() => [])
   };
 
   return new NextResponse(JSON.stringify(payload, null, 2), {
