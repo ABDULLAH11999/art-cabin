@@ -9,21 +9,21 @@ export default async function ContactPage() {
   return (
     <div className="mx-auto max-w-5xl px-4 py-10 lg:px-8">
       <p className="text-[11px] uppercase tracking-[0.35em] text-maroon">Contact</p>
-      <h1 className="mt-3 font-heading text-5xl leading-none sm:text-7xl">Let&apos;s Connect</h1>
-      <p className="mt-5 max-w-3xl text-base leading-8 text-black/65 sm:text-lg">
+      <h1 className="mt-3 font-heading text-5xl leading-none text-maroon sm:text-7xl">Let&apos;s Connect</h1>
+      <p className="mt-5 max-w-3xl text-base leading-8 text-maroon/72 sm:text-lg">
         Use the Instagram-style button to connect, or reach out with the contact information below for inquiries and collaborations.
       </p>
 
       <div className="mt-8 grid gap-4 md:grid-cols-3">
-        <div className="rounded-[1.75rem] border border-maroon/15 bg-white p-5 shadow-sm">
+        <div className="soft-card rounded-[1.75rem] border border-maroon/15 p-5 shadow-sm">
           <Phone className="h-5 w-5 text-maroon" />
-          <p className="mt-3 text-sm uppercase tracking-[0.3em] text-black/45">Phone</p>
-          <p className="mt-2 font-semibold">{config.contactNumber}</p>
+          <p className="mt-3 text-sm uppercase tracking-[0.3em] text-rosewood">Phone</p>
+          <p className="mt-2 font-semibold text-maroon">{config.contactNumber}</p>
         </div>
-        <div className="rounded-[1.75rem] border border-maroon/15 bg-white p-5 shadow-sm">
+        <div className="soft-card rounded-[1.75rem] border border-maroon/15 p-5 shadow-sm">
           <Mail className="h-5 w-5 text-maroon" />
-          <p className="mt-3 text-sm uppercase tracking-[0.3em] text-black/45">Email</p>
-          <p className="mt-2 font-semibold">{config.contactEmail}</p>
+          <p className="mt-3 text-sm uppercase tracking-[0.3em] text-rosewood">Email</p>
+          <p className="mt-2 font-semibold text-maroon">{config.contactEmail}</p>
         </div>
         <a
           href={config.instagramLink}

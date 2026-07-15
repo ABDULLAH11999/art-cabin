@@ -16,7 +16,7 @@ export default async function ExhibitionDetailPage({ params }: { params: { slug:
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 lg:px-8">
-      <Link href="/exhibition" className="inline-flex items-center gap-2 text-sm font-semibold text-black/60">
+      <Link href="/exhibition" className="inline-flex items-center gap-2 text-sm font-semibold text-maroon/70">
         <ArrowLeft className="h-4 w-4" />
         Back to Exhibition
       </Link>
@@ -37,12 +37,12 @@ export default async function ExhibitionDetailPage({ params }: { params: { slug:
           </div>
         </div>
 
-        <div className="rounded-[2rem] border border-maroon/15 bg-white p-5 shadow-sm sm:p-6">
+        <div className="soft-card rounded-[2rem] border border-maroon/15 p-5 shadow-sm sm:p-6">
           <p className="text-[11px] uppercase tracking-[0.35em] text-maroon">#{exhibition.orderNumber}</p>
-          <h1 className="mt-3 font-heading text-4xl sm:text-6xl">{exhibition.title}</h1>
-          <p className="mt-5 text-base leading-8 text-black/65">{exhibition.description}</p>
-          <div className="mt-6 rounded-[1.5rem] border border-maroon/15 bg-maroon/5 p-4">
-            <p className="text-sm text-black/60">Interested in the exhibition concept or featured work?</p>
+          <h1 className="mt-3 font-heading text-4xl text-maroon sm:text-6xl">{exhibition.title}</h1>
+          {exhibition.description ? <p className="mt-5 text-base leading-8 text-maroon/72">{exhibition.description}</p> : null}
+          <div className="mt-6 rounded-[1.5rem] border border-maroon/15 bg-white/65 p-4">
+            <p className="text-sm text-maroon/72">Interested in the exhibition concept or featured work?</p>
             <a
               href={config.instagramLink}
               target="_blank"

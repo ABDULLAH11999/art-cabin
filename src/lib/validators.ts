@@ -62,7 +62,7 @@ export const checkoutSchema = z.object({
 
 export const artSchema = z.object({
   title: z.string().trim().min(2),
-  description: z.string().trim().min(10),
+  description: z.string().trim().optional().default(""),
   paintingType: z.string().trim().min(2),
   isFeatured: z.coerce.boolean().optional().default(false),
   orderNumber: z.coerce.number().int().min(1),
@@ -71,7 +71,7 @@ export const artSchema = z.object({
 
 export const exhibitionSchema = z.object({
   title: z.string().trim().min(2),
-  description: z.string().trim().min(10),
+  description: z.string().trim().optional().default(""),
   orderNumber: z.coerce.number().int().min(1),
   images: z.array(z.string().trim().min(1)).min(1)
 });

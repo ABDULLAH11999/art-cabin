@@ -5,10 +5,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        maroon: "#6E1F34",
-        maroonSoft: "#8C3B54",
+        maroon: "#6D1F2B",
+        maroonSoft: "#9A6C6D",
+        rosewood: "#A67879",
         ink: "#111111",
-        paper: "#FAF7F4"
+        paper: "#F4E7D7"
       },
       boxShadow: {
         luxe: "0 24px 60px rgba(17,17,17,.16)"

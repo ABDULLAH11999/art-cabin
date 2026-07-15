@@ -61,11 +61,11 @@ export function BannerSlider({ desktopImages, mobileImages, fallbackImages = [] 
 
   if (!resolvedDesktopImages.length && !resolvedMobileImages.length) {
     return (
-      <div className="relative overflow-hidden rounded-[2.5rem] border border-maroon/15 bg-[radial-gradient(circle_at_top,_rgba(110,31,52,0.18),_transparent_40%),linear-gradient(180deg,#fff,#f6ecef)] p-8 shadow-luxe">
+      <div className="palette-glow relative overflow-hidden rounded-[2.5rem] border border-maroon/15 p-8 shadow-luxe">
         <div className="absolute right-8 top-8 h-28 w-28 rounded-full bg-maroon/10 blur-3xl" />
-        <div className="relative flex min-h-[320px] flex-col justify-end rounded-[2rem] border border-maroon/15 bg-white/80 p-6 backdrop-blur-sm sm:min-h-[420px]">
+        <div className="relative flex min-h-[320px] flex-col justify-end rounded-[2rem] border border-maroon/15 bg-paper/80 p-6 backdrop-blur-sm sm:min-h-[420px]">
           <h2 className="mt-3 font-heading text-4xl text-maroon sm:text-5xl">Add desktop and mobile banners from the admin panel.</h2>
-          <p className="mt-4 max-w-lg text-sm leading-7 text-black/65">
+          <p className="mt-4 max-w-lg text-sm leading-7 text-maroon/70">
             Once images are added, this hero area will rotate them every 3 seconds without a full page refresh.
           </p>
         </div>
@@ -76,10 +76,10 @@ export function BannerSlider({ desktopImages, mobileImages, fallbackImages = [] 
   return (
     <div className="space-y-4">
       {desktopImages.length ? (
-        <div className="relative hidden overflow-hidden rounded-[2.5rem] border border-maroon/15 bg-white shadow-luxe md:block">
+        <div className="relative hidden overflow-hidden rounded-[2.5rem] border border-maroon/15 bg-paper shadow-luxe md:block">
           <BannerTrack images={resolvedDesktopImages} activeIndex={desktopActiveIndex} className="relative h-[540px] w-full" />
           {resolvedDesktopImages.length > 1 ? (
-            <div className="absolute bottom-5 left-1/2 flex -translate-x-1/2 gap-2 rounded-full bg-white/85 px-3 py-2 backdrop-blur-sm">
+            <div className="absolute bottom-5 left-1/2 flex -translate-x-1/2 gap-2 rounded-full bg-paper/90 px-3 py-2 backdrop-blur-sm">
               {resolvedDesktopImages.map((image, index) => (
                 <span key={`${image}-desktop-dot`} className={`h-2.5 w-2.5 rounded-full ${index === desktopActiveIndex ? "bg-maroon" : "bg-maroon/25"}`} />
               ))}
@@ -87,10 +87,10 @@ export function BannerSlider({ desktopImages, mobileImages, fallbackImages = [] 
           ) : null}
         </div>
       ) : resolvedDesktopImages.length ? (
-        <div className="relative hidden overflow-hidden rounded-[2.5rem] border border-maroon/15 bg-white shadow-luxe md:block">
+        <div className="relative hidden overflow-hidden rounded-[2.5rem] border border-maroon/15 bg-paper shadow-luxe md:block">
           <BannerTrack images={resolvedDesktopImages} activeIndex={desktopActiveIndex} className="relative h-[540px] w-full" />
           {resolvedDesktopImages.length > 1 ? (
-            <div className="absolute bottom-5 left-1/2 flex -translate-x-1/2 gap-2 rounded-full bg-white/85 px-3 py-2 backdrop-blur-sm">
+            <div className="absolute bottom-5 left-1/2 flex -translate-x-1/2 gap-2 rounded-full bg-paper/90 px-3 py-2 backdrop-blur-sm">
               {resolvedDesktopImages.map((image, index) => (
                 <span key={`${image}-desktop-dot`} className={`h-2.5 w-2.5 rounded-full ${index === desktopActiveIndex ? "bg-maroon" : "bg-maroon/25"}`} />
               ))}
@@ -100,10 +100,10 @@ export function BannerSlider({ desktopImages, mobileImages, fallbackImages = [] 
       ) : null}
 
       {mobileImages.length ? (
-        <div className="relative overflow-hidden rounded-[2rem] border border-maroon/15 bg-white shadow-luxe md:hidden">
+        <div className="relative overflow-hidden rounded-[2rem] border border-maroon/15 bg-paper shadow-luxe md:hidden">
           <BannerTrack images={resolvedMobileImages} activeIndex={mobileActiveIndex} className="relative h-[420px] w-full" />
           {resolvedMobileImages.length > 1 ? (
-            <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2 rounded-full bg-white/85 px-3 py-2 backdrop-blur-sm">
+            <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2 rounded-full bg-paper/90 px-3 py-2 backdrop-blur-sm">
               {resolvedMobileImages.map((image, index) => (
                 <span key={`${image}-mobile-dot`} className={`h-2.5 w-2.5 rounded-full ${index === mobileActiveIndex ? "bg-maroon" : "bg-maroon/25"}`} />
               ))}
@@ -111,10 +111,10 @@ export function BannerSlider({ desktopImages, mobileImages, fallbackImages = [] 
           ) : null}
         </div>
       ) : resolvedMobileImages.length ? (
-        <div className="relative overflow-hidden rounded-[2rem] border border-maroon/15 bg-white shadow-luxe md:hidden">
+        <div className="relative overflow-hidden rounded-[2rem] border border-maroon/15 bg-paper shadow-luxe md:hidden">
           <BannerTrack images={resolvedMobileImages} activeIndex={mobileActiveIndex} className="relative h-[420px] w-full" />
           {resolvedMobileImages.length > 1 ? (
-            <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2 rounded-full bg-white/85 px-3 py-2 backdrop-blur-sm">
+            <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2 rounded-full bg-paper/90 px-3 py-2 backdrop-blur-sm">
               {resolvedMobileImages.map((image, index) => (
                 <span key={`${image}-mobile-dot`} className={`h-2.5 w-2.5 rounded-full ${index === mobileActiveIndex ? "bg-maroon" : "bg-maroon/25"}`} />
               ))}

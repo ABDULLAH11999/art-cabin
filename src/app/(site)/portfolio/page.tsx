@@ -11,8 +11,8 @@ export default async function PortfolioPage() {
     <div className="mx-auto max-w-7xl px-4 py-10 lg:px-8">
       <div className="max-w-3xl">
         <p className="text-[11px] uppercase tracking-[0.35em] text-maroon">Portfolio</p>
-        <h1 className="mt-3 font-heading text-5xl leading-none sm:text-7xl">Curated Art Pieces</h1>
-        <p className="mt-5 text-base leading-8 text-black/65 sm:text-lg">
+        <h1 className="mt-3 font-heading text-5xl leading-none text-maroon sm:text-7xl">Curated Art Pieces</h1>
+        <p className="mt-5 text-base leading-8 text-maroon/72 sm:text-lg">
           Browse the portfolio and open any work for the full single-art page with Instagram-first contact action.
         </p>
       </div>
@@ -22,7 +22,7 @@ export default async function PortfolioPage() {
           <Link
             key={art.id}
             href={`/art/${art.slug}`}
-            className="overflow-hidden rounded-[2rem] border border-maroon/15 bg-white shadow-sm transition hover:-translate-y-1 hover:border-maroon"
+            className="soft-card overflow-hidden rounded-[2rem] border border-maroon/15 shadow-sm transition hover:-translate-y-1 hover:border-maroon"
           >
             <MediaImage
               src={Array.isArray(art.images) ? String(art.images[0] || "") : ""}
@@ -33,10 +33,10 @@ export default async function PortfolioPage() {
             />
             <div className="p-5">
               <p className="text-[11px] uppercase tracking-[0.3em] text-maroon">
-                {art.paintingType} • #{art.orderNumber}
+                {art.paintingType} - #{art.orderNumber}
               </p>
-              <h2 className="mt-2 font-heading text-3xl">{art.title}</h2>
-              <p className="mt-3 line-clamp-3 text-sm leading-6 text-black/60">{art.description}</p>
+              <h2 className="mt-2 font-heading text-3xl text-maroon">{art.title}</h2>
+              {art.description ? <p className="mt-3 line-clamp-3 text-sm leading-6 text-maroon/72">{art.description}</p> : null}
             </div>
           </Link>
         ))}

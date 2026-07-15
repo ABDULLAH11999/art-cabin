@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { Plus, Upload, X } from "lucide-react";
+import { ArrowDown, ArrowUp, GripVertical, ImagePlus, Plus, Upload, X } from "lucide-react";
 import { useMediaUploader } from "@/components/media-uploader";
 
 type Resource = "arts" | "exhibitions";
@@ -36,6 +36,7 @@ export function ContentForm({ resource, id, initialData, nextOrderNumber }: Cont
   const [images, setImages] = useState<string[]>(initialData?.images || []);
   const [manualImage, setManualImage] = useState("");
   const [saving, setSaving] = useState(false);
+  const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
 
   useEffect(() => {
     if (!images.length && initialData?.images?.length) {
@@ -56,6 +57,30 @@ export function ContentForm({ resource, id, initialData, nextOrderNumber }: Cont
     if (!value) return;
     setImages((current) => [...current, value]);
     setManualImage("");
+  }
+
+  function moveImage(index: number, direction: "up" | "down") {
+    setImages((current) => {
+      const nextIndex = direction === "up" ? index - 1 : index + 1;
+      if (nextIndex < 0 || nextIndex >= current.length) {
+        return current;
+      }
+
+      const next = [...current];
+      [next[index], next[nextIndex]] = [next[nextIndex], next[index]];
+      return next;
+    });
+  }
+
+  function reorderImage(fromIndex: number, toIndex: number) {
+    if (fromIndex === toIndex) return;
+
+    setImages((current) => {
+      const next = [...current];
+      const [moved] = next.splice(fromIndex, 1);
+      next.splice(toIndex, 0, moved);
+      return next;
+    });
   }
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -97,7 +122,7 @@ export function ContentForm({ resource, id, initialData, nextOrderNumber }: Cont
 
   return (
     <form onSubmit={onSubmit} className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_360px]">
-      <section className="rounded-[2rem] border border-maroon/15 bg-white p-4 shadow-sm sm:p-6">
+      <section className="rounded-[2rem] border border-maroon/15 bg-white/90 p-4 shadow-sm backdrop-blur-sm sm:p-6">
         <div className="flex items-start justify-between gap-3">
           <div>
             <p className="text-[11px] uppercase tracking-[0.35em] text-black/45">Content</p>
@@ -166,21 +191,33 @@ export function ContentForm({ resource, id, initialData, nextOrderNumber }: Cont
               onChange={(e) => setDescription(e.target.value)}
               rows={8}
               className="rounded-2xl border border-black/10 px-4 py-3 outline-none transition focus:border-maroon"
-              placeholder="Describe the artwork or exhibition story..."
+              placeholder="Optional curatorial note, material details, or story..."
             />
+            <span className="text-xs text-black/45">You can leave this empty if you only want to show the title, images, and painting details.</span>
           </label>
         </div>
       </section>
 
       <aside className="space-y-6">
-        <section className="rounded-[2rem] border border-maroon/15 bg-maroon p-4 text-white shadow-sm sm:p-6">
-          <h2 className="font-heading text-2xl">Images</h2>
-          <p className="mt-1 text-sm text-white/72">Upload files or paste image URLs. The first image becomes the lead visual in the UI.</p>
+        <section className="rounded-[2rem] border border-maroon/15 bg-[linear-gradient(180deg,rgba(109,31,43,0.96),rgba(166,120,121,0.96))] p-4 text-white shadow-sm sm:p-6">
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <h2 className="font-heading text-2xl">Images</h2>
+              <p className="mt-1 text-sm text-white/72">
+                Upload files or paste image URLs. Image 1 becomes the lead visual on cards, detail pages, and banner fallback.
+              </p>
+            </div>
+            <div className="rounded-full border border-white/20 bg-white/10 p-3">
+              <ImagePlus className="h-5 w-5" />
+            </div>
+          </div>
 
-          <label className="mt-5 flex cursor-pointer flex-col items-center justify-center rounded-[1.5rem] border border-dashed border-white/25 bg-white/10 px-4 py-8 text-center transition hover:border-white/40 hover:bg-white/15">
-            <Upload className="h-6 w-6" />
-            <span className="mt-2 text-sm font-semibold">Upload images</span>
-            <span className="mt-1 text-xs text-white/50">{uploading ? "Uploading..." : "PNG, JPG, WebP"}</span>
+          <label className="mt-5 flex cursor-pointer flex-col items-center justify-center rounded-[1.75rem] border border-dashed border-white/30 bg-white/95 px-5 py-8 text-center text-maroon transition hover:border-white hover:bg-white">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-maroon text-white shadow-sm">
+              <Upload className="h-5 w-5" />
+            </div>
+            <span className="mt-3 text-sm font-semibold">Choose art images</span>
+            <span className="mt-1 text-xs text-maroon/70">{uploading ? "Uploading..." : "PNG, JPG, WebP up to your configured upload limit"}</span>
             <input type="file" accept="image/*" multiple onChange={handleFilesChange} className="hidden" />
           </label>
 
@@ -196,14 +233,64 @@ export function ContentForm({ resource, id, initialData, nextOrderNumber }: Cont
             </button>
           </div>
 
-          <div className="mt-5 grid gap-3">
+          <div className="mt-5 rounded-[1.5rem] border border-white/15 bg-white/10 p-3">
+            <div className="flex items-center justify-between gap-3">
+              <div>
+                <p className="text-sm font-semibold text-white">Display Sequence</p>
+                <p className="text-xs text-white/60">Drag images or use the arrows to control frontend order.</p>
+              </div>
+              <div className="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-semibold text-white/75">
+                {images.length} image{images.length === 1 ? "" : "s"}
+              </div>
+            </div>
+
+          <div className="mt-4 grid gap-3">
             {images.length ? (
               images.map((image, index) => (
-                <div key={`${image}-${index}`} className="flex items-center gap-3 rounded-2xl border border-white/20 bg-white p-2 text-black">
-                  <img src={image} alt="" className="h-14 w-14 rounded-xl object-cover" />
+                <div
+                  key={`${image}-${index}`}
+                  draggable
+                  onDragStart={() => setDraggedIndex(index)}
+                  onDragOver={(event) => event.preventDefault()}
+                  onDrop={() => {
+                    if (draggedIndex !== null) {
+                      reorderImage(draggedIndex, index);
+                    }
+                    setDraggedIndex(null);
+                  }}
+                  onDragEnd={() => setDraggedIndex(null)}
+                  className={`flex items-center gap-3 rounded-2xl border bg-white p-2 text-black shadow-sm transition ${
+                    draggedIndex === index ? "border-maroon/40 ring-2 ring-maroon/15" : "border-white/20"
+                  }`}
+                >
+                  <div className="flex flex-col items-center gap-1 rounded-xl bg-paper px-2 py-2 text-maroon">
+                    <GripVertical className="h-4 w-4" />
+                    <span className="text-[10px] font-semibold leading-none">#{index + 1}</span>
+                  </div>
+                  <img src={image} alt="" className="h-16 w-16 rounded-xl object-cover" />
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-sm font-medium">{image}</p>
-                    <p className="text-xs text-black/45">Image {index + 1}</p>
+                    <p className="text-xs text-black/45">{index === 0 ? "Primary image" : `Image ${index + 1}`}</p>
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <button
+                      type="button"
+                      onClick={() => moveImage(index, "up")}
+                      disabled={index === 0}
+                      className="rounded-xl border border-maroon/15 p-2 text-maroon transition hover:bg-maroon/5 disabled:cursor-not-allowed disabled:opacity-35"
+                      aria-label={`Move image ${index + 1} up`}
+                    >
+                      <ArrowUp className="h-4 w-4" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => moveImage(index, "down")}
+                      disabled={index === images.length - 1}
+                      className="rounded-xl border border-maroon/15 p-2 text-maroon transition hover:bg-maroon/5 disabled:cursor-not-allowed disabled:opacity-35"
+                      aria-label={`Move image ${index + 1} down`}
+                    >
+                      <ArrowDown className="h-4 w-4" />
+                    </button>
                   </div>
                   <button
                     type="button"
@@ -219,6 +306,7 @@ export function ContentForm({ resource, id, initialData, nextOrderNumber }: Cont
                 Add at least one image to publish this entry.
               </div>
             )}
+          </div>
           </div>
         </section>
 

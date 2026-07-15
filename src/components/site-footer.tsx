@@ -65,7 +65,7 @@ export function SiteFooter() {
               aria-label="Instagram"
               target={config.instagramLink ? "_blank" : undefined}
               rel={config.instagramLink ? "noreferrer" : undefined}
-              className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-3 transition hover:bg-white/20"
+              className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-paper px-4 py-3 text-maroon transition hover:bg-white"
             >
               <Instagram className="h-4 w-4" />
               Instagram
