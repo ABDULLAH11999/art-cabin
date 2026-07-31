@@ -89,19 +89,18 @@ export function ContentForm({ resource, id, initialData, nextOrderNumber }: Cont
       toast.error("Please add at least one image.");
       return;
     }
-    if (isArt && !paintingType.trim()) {
-      toast.error("Painting type is required.");
-      return;
-    }
+
+    const finalTitle = title.trim() || `Art Piece #${orderNumber}`;
+    const finalPaintingType = paintingType.trim() || "Oil Painting";
 
     setSaving(true);
     const response = await fetch(endpoint, {
       method: id ? "PUT" : "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        title,
+        title: finalTitle,
         description,
-        paintingType: isArt ? paintingType : undefined,
+        paintingType: isArt ? finalPaintingType : undefined,
         isFeatured: isArt ? isFeatured : false,
         orderNumber: Number(orderNumber),
         images
