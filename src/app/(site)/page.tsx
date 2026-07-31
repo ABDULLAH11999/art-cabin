@@ -3,6 +3,7 @@ import { ArrowRight, Brush, Frame, Instagram, Sparkles, WandSparkles } from "luc
 import { getSafeArts, getSafeExhibitions, getSafeFeaturedArts, getSafeSiteConfig } from "@/lib/art-content";
 import { MediaImage } from "@/components/media-image";
 import { BannerSlider } from "@/components/banner-slider";
+import { PortfolioGallery } from "@/components/portfolio/portfolio-gallery";
 import { getBannerSettings } from "@/lib/settings";
 
 export const dynamic = "force-dynamic";
@@ -69,30 +70,7 @@ export default async function HomePage() {
             View all
           </Link>
         </div>
-        <div className="mt-6 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {resolvedFeaturedArts.map((art) => (
-            <Link
-              key={art.id}
-              href={`/art/${art.slug}`}
-              className="group soft-card overflow-hidden rounded-[2rem] border border-maroon/15 shadow-sm transition hover:-translate-y-1 hover:border-maroon"
-            >
-              <MediaImage
-                src={Array.isArray(art.images) ? String(art.images[0] || "") : ""}
-                alt={art.title}
-                width={900}
-                height={900}
-                className="h-72 w-full object-cover transition duration-500 group-hover:scale-[1.02]"
-              />
-              <div className="p-5">
-                <p className="text-[11px] uppercase tracking-[0.3em] text-maroon">
-                  {art.paintingType} - #{art.orderNumber}
-                </p>
-                <h3 className="mt-2 font-heading text-3xl text-maroon">{art.title}</h3>
-                {art.description ? <p className="mt-3 line-clamp-3 text-sm leading-6 text-maroon/72">{art.description}</p> : null}
-              </div>
-            </Link>
-          ))}
-        </div>
+        <PortfolioGallery arts={resolvedFeaturedArts} instagramLink={config.instagramLink} />
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-10 lg:px-8">

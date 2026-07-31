@@ -53,33 +53,114 @@ async function main() {
 
   const arts = [
     {
-      title: "Quiet Maroon Horizon",
+      title: "Gallery 1",
       orderNumber: 1,
-      paintingType: "Acrylic on Canvas",
-      description:
-        "An atmospheric composition balancing maroon light with layered charcoal strokes and a calm paper-white negative space.",
-      images: ["/ui-images/art-1.svg", "/ui-images/art-2.svg"]
+      paintingType: "Oil Painting",
+      description: "",
+      isFeatured: true,
+      images: ["https://raw.githubusercontent.com/fatyma-irfan/Portfolio/main/assets/img/gallery/gallery-1.jpg"]
     },
     {
-      title: "Paper Bloom Study",
+      title: "Gallery 2",
       orderNumber: 2,
-      paintingType: "Mixed Media",
-      description:
-        "A textured piece built around gesture, shadow, and delicate contrast to evoke the softness of paper and paint.",
-      images: ["/ui-images/art-3.svg"]
+      paintingType: "Oil Painting",
+      description: "",
+      isFeatured: true,
+      images: ["https://raw.githubusercontent.com/fatyma-irfan/Portfolio/main/assets/img/gallery/gallery-2.jpg"]
+    },
+    {
+      title: "Gallery 3",
+      orderNumber: 3,
+      paintingType: "Oil Painting",
+      description: "",
+      isFeatured: true,
+      images: ["https://raw.githubusercontent.com/fatyma-irfan/Portfolio/main/assets/img/gallery/gallery-3.jpg"]
+    },
+    {
+      title: "Gallery 4",
+      orderNumber: 4,
+      paintingType: "Oil Painting",
+      description: "",
+      isFeatured: true,
+      images: ["https://raw.githubusercontent.com/fatyma-irfan/Portfolio/main/assets/img/gallery/gallery-4.jpg"]
+    },
+    {
+      title: "Gallery 5",
+      orderNumber: 5,
+      paintingType: "Oil Painting",
+      description: "",
+      isFeatured: true,
+      images: ["https://raw.githubusercontent.com/fatyma-irfan/Portfolio/main/assets/img/gallery/gallery-5.jpg"]
+    },
+    {
+      title: "Gallery 6",
+      orderNumber: 6,
+      paintingType: "Oil Painting",
+      description: "",
+      isFeatured: true,
+      images: ["https://raw.githubusercontent.com/fatyma-irfan/Portfolio/main/assets/img/gallery/gallery-6.jpg"]
+    },
+    {
+      title: "Gallery 7",
+      orderNumber: 7,
+      paintingType: "Oil Painting",
+      description: "",
+      isFeatured: true,
+      images: ["https://raw.githubusercontent.com/fatyma-irfan/Portfolio/main/assets/img/gallery/gallery-7.jpg"]
+    },
+    {
+      title: "Gallery 8",
+      orderNumber: 8,
+      paintingType: "Oil Painting",
+      description: "",
+      isFeatured: true,
+      images: ["https://raw.githubusercontent.com/fatyma-irfan/Portfolio/main/assets/img/gallery/gallery-8.jpg"]
+    },
+    {
+      title: "Gallery 9",
+      orderNumber: 9,
+      paintingType: "Oil Painting",
+      description: "",
+      isFeatured: true,
+      images: ["https://raw.githubusercontent.com/fatyma-irfan/Portfolio/main/assets/img/gallery/gallery-9.jpg"]
+    },
+    {
+      title: "Gallery 10",
+      orderNumber: 10,
+      paintingType: "Oil Painting",
+      description: "",
+      isFeatured: true,
+      images: ["https://raw.githubusercontent.com/fatyma-irfan/Portfolio/main/assets/img/gallery/gallery-10.jpg"]
+    },
+    {
+      title: "Gallery 11",
+      orderNumber: 11,
+      paintingType: "Oil Painting",
+      description: "",
+      isFeatured: true,
+      images: ["https://raw.githubusercontent.com/fatyma-irfan/Portfolio/main/assets/img/gallery/gallery-11.jpg"]
+    },
+    {
+      title: "Gallery 12",
+      orderNumber: 12,
+      paintingType: "Oil Painting",
+      description: "",
+      isFeatured: true,
+      images: ["https://raw.githubusercontent.com/fatyma-irfan/Portfolio/main/assets/img/gallery/gallery-12.jpg"]
     }
   ];
 
   for (const art of arts) {
+    const slug = toSlug(art.title);
     await prisma.art.upsert({
-      where: { slug: toSlug(`${art.title}-${art.orderNumber}`) },
+      where: { slug },
       create: {
         ...art,
-        slug: toSlug(`${art.title}-${art.orderNumber}`)
+        slug
       },
       update: {
         ...art,
-        slug: toSlug(`${art.title}-${art.orderNumber}`)
+        slug
       }
     });
   }

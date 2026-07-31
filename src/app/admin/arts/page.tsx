@@ -1,15 +1,13 @@
 import Link from "next/link";
-import { prisma } from "@/lib/prisma";
 import { DeleteButton } from "@/components/admin/delete-button";
 import { MediaImage } from "@/components/media-image";
 import { ChevronRight, Plus } from "lucide-react";
+import { getSafeArts } from "@/lib/art-content";
 
 export const dynamic = "force-dynamic";
 
 export default async function ArtsPage() {
-  const arts = await prisma.art.findMany({
-    orderBy: [{ orderNumber: "asc" }, { createdAt: "desc" }]
-  });
+  const arts = await getSafeArts();
 
   const nextOrderNumber = (arts.at(-1)?.orderNumber || 0) + 1;
 

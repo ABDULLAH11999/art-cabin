@@ -23,24 +23,124 @@ export type ExhibitionContent = {
 
 export const fallbackArts: ArtContent[] = [
   {
-    id: "fallback-art-1",
-    title: "Quiet Maroon Horizon",
-    slug: "quiet-maroon-horizon-1",
-    description: "An atmospheric composition balancing maroon light, layered brushwork, and calm negative space for a gallery-like pause.",
-    paintingType: "Acrylic on Canvas",
+    id: "gallery-1",
+    title: "Gallery 1",
+    slug: "gallery-1",
+    description: "",
+    paintingType: "Oil Painting",
     isFeatured: true,
     orderNumber: 1,
-    images: ["/ui-images/art-1.svg", "/ui-images/art-2.svg"]
+    images: ["https://raw.githubusercontent.com/fatyma-irfan/Portfolio/main/assets/img/gallery/gallery-1.jpg"]
   },
   {
-    id: "fallback-art-2",
-    title: "Paper Bloom Study",
-    slug: "paper-bloom-study-2",
-    description: "A textured study built around gesture, shadow, and soft contrast to echo the tactile energy of handmade contemporary work.",
-    paintingType: "Mixed Media",
-    isFeatured: false,
+    id: "gallery-2",
+    title: "Gallery 2",
+    slug: "gallery-2",
+    description: "",
+    paintingType: "Oil Painting",
+    isFeatured: true,
     orderNumber: 2,
-    images: ["/ui-images/art-3.svg"]
+    images: ["https://raw.githubusercontent.com/fatyma-irfan/Portfolio/main/assets/img/gallery/gallery-2.jpg"]
+  },
+  {
+    id: "gallery-3",
+    title: "Gallery 3",
+    slug: "gallery-3",
+    description: "",
+    paintingType: "Oil Painting",
+    isFeatured: true,
+    orderNumber: 3,
+    images: ["https://raw.githubusercontent.com/fatyma-irfan/Portfolio/main/assets/img/gallery/gallery-3.jpg"]
+  },
+  {
+    id: "gallery-4",
+    title: "Gallery 4",
+    slug: "gallery-4",
+    description: "",
+    paintingType: "Oil Painting",
+    isFeatured: true,
+    orderNumber: 4,
+    images: ["https://raw.githubusercontent.com/fatyma-irfan/Portfolio/main/assets/img/gallery/gallery-4.jpg"]
+  },
+  {
+    id: "gallery-5",
+    title: "Gallery 5",
+    slug: "gallery-5",
+    description: "",
+    paintingType: "Oil Painting",
+    isFeatured: true,
+    orderNumber: 5,
+    images: ["https://raw.githubusercontent.com/fatyma-irfan/Portfolio/main/assets/img/gallery/gallery-5.jpg"]
+  },
+  {
+    id: "gallery-6",
+    title: "Gallery 6",
+    slug: "gallery-6",
+    description: "",
+    paintingType: "Oil Painting",
+    isFeatured: true,
+    orderNumber: 6,
+    images: ["https://raw.githubusercontent.com/fatyma-irfan/Portfolio/main/assets/img/gallery/gallery-6.jpg"]
+  },
+  {
+    id: "gallery-7",
+    title: "Gallery 7",
+    slug: "gallery-7",
+    description: "",
+    paintingType: "Oil Painting",
+    isFeatured: true,
+    orderNumber: 7,
+    images: ["https://raw.githubusercontent.com/fatyma-irfan/Portfolio/main/assets/img/gallery/gallery-7.jpg"]
+  },
+  {
+    id: "gallery-8",
+    title: "Gallery 8",
+    slug: "gallery-8",
+    description: "",
+    paintingType: "Oil Painting",
+    isFeatured: true,
+    orderNumber: 8,
+    images: ["https://raw.githubusercontent.com/fatyma-irfan/Portfolio/main/assets/img/gallery/gallery-8.jpg"]
+  },
+  {
+    id: "gallery-9",
+    title: "Gallery 9",
+    slug: "gallery-9",
+    description: "",
+    paintingType: "Oil Painting",
+    isFeatured: true,
+    orderNumber: 9,
+    images: ["https://raw.githubusercontent.com/fatyma-irfan/Portfolio/main/assets/img/gallery/gallery-9.jpg"]
+  },
+  {
+    id: "gallery-10",
+    title: "Gallery 10",
+    slug: "gallery-10",
+    description: "",
+    paintingType: "Oil Painting",
+    isFeatured: true,
+    orderNumber: 10,
+    images: ["https://raw.githubusercontent.com/fatyma-irfan/Portfolio/main/assets/img/gallery/gallery-10.jpg"]
+  },
+  {
+    id: "gallery-11",
+    title: "Gallery 11",
+    slug: "gallery-11",
+    description: "",
+    paintingType: "Oil Painting",
+    isFeatured: true,
+    orderNumber: 11,
+    images: ["https://raw.githubusercontent.com/fatyma-irfan/Portfolio/main/assets/img/gallery/gallery-11.jpg"]
+  },
+  {
+    id: "gallery-12",
+    title: "Gallery 12",
+    slug: "gallery-12",
+    description: "",
+    paintingType: "Oil Painting",
+    isFeatured: true,
+    orderNumber: 12,
+    images: ["https://raw.githubusercontent.com/fatyma-irfan/Portfolio/main/assets/img/gallery/gallery-12.jpg"]
   }
 ];
 
