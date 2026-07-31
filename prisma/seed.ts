@@ -53,105 +53,169 @@ async function main() {
 
   const arts = [
     {
-      title: "Gallery 1",
+      title: "Golden Calligraphy",
       orderNumber: 1,
-      paintingType: "Oil Painting",
-      description: "",
+      paintingType: "Calligraphy",
+      description: "Elegant golden Arabic calligraphy on a deep crimson background, blending traditional script with contemporary flair.",
       isFeatured: true,
-      images: ["https://raw.githubusercontent.com/fatyma-irfan/Portfolio/main/assets/img/gallery/gallery-1.jpg"]
+      images: ["/gallery/gallery-1.jpg"]
     },
     {
-      title: "Gallery 2",
+      title: "Crimson Horizon",
       orderNumber: 2,
       paintingType: "Oil Painting",
-      description: "",
+      description: "A vivid oil painting capturing warm crimson tones melting into a quiet golden horizon at sunset.",
       isFeatured: true,
-      images: ["https://raw.githubusercontent.com/fatyma-irfan/Portfolio/main/assets/img/gallery/gallery-2.jpg"]
+      images: ["/gallery/gallery-2.jpg"]
     },
     {
-      title: "Gallery 3",
+      title: "Abstract Bloom",
       orderNumber: 3,
-      paintingType: "Oil Painting",
-      description: "",
+      paintingType: "Acrylic on Canvas",
+      description: "Layered acrylic blooms in maroon and blush tones, exploring organic forms and delicate contrast.",
       isFeatured: true,
-      images: ["https://raw.githubusercontent.com/fatyma-irfan/Portfolio/main/assets/img/gallery/gallery-3.jpg"]
+      images: ["/gallery/gallery-3.jpg"]
     },
     {
-      title: "Gallery 4",
+      title: "Whispering Lines",
       orderNumber: 4,
-      paintingType: "Oil Painting",
-      description: "",
+      paintingType: "Ink Drawing",
+      description: "Fine ink lines flowing across the canvas like whispered secrets, creating a rhythmic abstract composition.",
       isFeatured: true,
-      images: ["https://raw.githubusercontent.com/fatyma-irfan/Portfolio/main/assets/img/gallery/gallery-4.jpg"]
+      images: ["/gallery/gallery-4.jpg"]
     },
     {
-      title: "Gallery 5",
+      title: "Terracotta Dreams",
       orderNumber: 5,
-      paintingType: "Oil Painting",
-      description: "",
+      paintingType: "Mixed Media",
+      description: "A mixed-media piece combining terracotta textures with hand-painted botanical motifs on recycled paper.",
       isFeatured: true,
-      images: ["https://raw.githubusercontent.com/fatyma-irfan/Portfolio/main/assets/img/gallery/gallery-5.jpg"]
+      images: ["/gallery/gallery-5.jpg"]
     },
     {
-      title: "Gallery 6",
+      title: "Velvet Dusk",
       orderNumber: 6,
       paintingType: "Oil Painting",
-      description: "",
-      isFeatured: true,
-      images: ["https://raw.githubusercontent.com/fatyma-irfan/Portfolio/main/assets/img/gallery/gallery-6.jpg"]
+      description: "Rich velvet tones of deep maroon and midnight blue converge in this atmospheric oil painting evoking twilight.",
+      isFeatured: false,
+      images: ["/gallery/gallery-6.jpg"]
     },
     {
-      title: "Gallery 7",
+      title: "Paper Bloom Study",
       orderNumber: 7,
-      paintingType: "Oil Painting",
-      description: "",
-      isFeatured: true,
-      images: ["https://raw.githubusercontent.com/fatyma-irfan/Portfolio/main/assets/img/gallery/gallery-7.jpg"]
+      paintingType: "Watercolor",
+      description: "A watercolor study of paper blooms, capturing the translucence and fragility of petals in soft washes.",
+      isFeatured: false,
+      images: ["/gallery/gallery-7.jpg"]
     },
     {
-      title: "Gallery 8",
+      title: "Geometry of Silence",
       orderNumber: 8,
-      paintingType: "Oil Painting",
-      description: "",
+      paintingType: "Acrylic on Canvas",
+      description: "Bold geometric shapes in muted earth tones create a meditative composition about empty space and balance.",
       isFeatured: true,
-      images: ["https://raw.githubusercontent.com/fatyma-irfan/Portfolio/main/assets/img/gallery/gallery-8.jpg"]
+      images: ["/gallery/gallery-8.jpg"]
     },
     {
-      title: "Gallery 9",
+      title: "Amber Script",
       orderNumber: 9,
-      paintingType: "Oil Painting",
-      description: "",
-      isFeatured: true,
-      images: ["https://raw.githubusercontent.com/fatyma-irfan/Portfolio/main/assets/img/gallery/gallery-9.jpg"]
+      paintingType: "Calligraphy",
+      description: "Flowing Arabic script rendered in amber and gold leaf on a dark walnut-toned background.",
+      isFeatured: false,
+      images: ["/gallery/gallery-9.jpg"]
     },
     {
-      title: "Gallery 10",
+      title: "Orchid Reverie",
       orderNumber: 10,
       paintingType: "Oil Painting",
-      description: "",
+      description: "A large-scale oil painting of abstracted orchid forms in deep mauve and ivory, evoking quiet luxury.",
       isFeatured: true,
-      images: ["https://raw.githubusercontent.com/fatyma-irfan/Portfolio/main/assets/img/gallery/gallery-10.jpg"]
+      images: ["/gallery/gallery-10.jpg"]
     },
     {
-      title: "Gallery 11",
+      title: "Charcoal Figures",
       orderNumber: 11,
-      paintingType: "Oil Painting",
-      description: "",
-      isFeatured: true,
-      images: ["https://raw.githubusercontent.com/fatyma-irfan/Portfolio/main/assets/img/gallery/gallery-11.jpg"]
+      paintingType: "Charcoal Drawing",
+      description: "Expressive charcoal figures captured mid-gesture, exploring human emotion through raw mark-making.",
+      isFeatured: false,
+      images: ["/gallery/gallery-11.jpg"]
     },
     {
-      title: "Gallery 12",
+      title: "Saffron Landscape",
       orderNumber: 12,
-      paintingType: "Oil Painting",
-      description: "",
+      paintingType: "Watercolor",
+      description: "A luminous watercolor landscape where saffron fields stretch under a hazy champagne sky.",
+      isFeatured: false,
+      images: ["/gallery/gallery-12.jpg"]
+    },
+    {
+      title: "Midnight Botanica",
+      orderNumber: 13,
+      paintingType: "Acrylic on Canvas",
+      description: "Dark botanical forms emerge from a midnight background, their edges highlighted with silver and teal accents.",
       isFeatured: true,
-      images: ["https://raw.githubusercontent.com/fatyma-irfan/Portfolio/main/assets/img/gallery/gallery-12.jpg"]
+      images: ["/gallery/gallery-13.jpeg"]
+    },
+    {
+      title: "Copper Patina",
+      orderNumber: 14,
+      paintingType: "Mixed Media",
+      description: "Oxidized copper textures layered with hand-torn paper and metallic paint, creating a tactile surface study.",
+      isFeatured: false,
+      images: ["/gallery/gallery-14.jpeg"]
+    },
+    {
+      title: "Ethereal Drift",
+      orderNumber: 15,
+      paintingType: "Oil Painting",
+      description: "Soft gradients of pearl white and blush drift across the canvas like clouds at dawn, a study in lightness.",
+      isFeatured: false,
+      images: ["/gallery/gallery-15.jpeg"]
+    },
+    {
+      title: "Woven Traditions",
+      orderNumber: 16,
+      paintingType: "Textile Art",
+      description: "A contemporary textile piece weaving traditional South Asian motifs with modern geometric patterns.",
+      isFeatured: true,
+      images: ["/gallery/gallery-16.jpeg"]
+    },
+    {
+      title: "Maroon Monolith",
+      orderNumber: 17,
+      paintingType: "Oil Painting",
+      description: "A monumental single-colour study in deep maroon, exploring texture, depth, and the psychology of colour.",
+      isFeatured: false,
+      images: ["/gallery/gallery-17.jpeg"]
+    },
+    {
+      title: "Porcelain Light",
+      orderNumber: 18,
+      paintingType: "Watercolor",
+      description: "Delicate watercolor washes in porcelain white and soft grey create an airy, almost translucent composition.",
+      isFeatured: false,
+      images: ["/gallery/gallery-18.jpeg"]
+    },
+    {
+      title: "Ember & Ash",
+      orderNumber: 19,
+      paintingType: "Mixed Media",
+      description: "Burnt umber and charcoal tones collide with flashes of ember orange in this raw mixed-media piece.",
+      isFeatured: true,
+      images: ["/gallery/gallery-19.jpeg"]
+    },
+    {
+      title: "Silent Garden",
+      orderNumber: 20,
+      paintingType: "Acrylic on Canvas",
+      description: "An intimate garden scene rendered in muted sage and dusty rose, inviting contemplation and quiet presence.",
+      isFeatured: false,
+      images: ["/gallery/gallery-20.jpeg"]
     }
   ];
 
   for (const art of arts) {
-    const slug = toSlug(art.title);
+    const slug = toSlug(`${art.title}-${art.orderNumber}`);
     await prisma.art.upsert({
       where: { slug },
       create: {
