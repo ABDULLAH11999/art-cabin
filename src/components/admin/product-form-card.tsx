@@ -3,6 +3,7 @@
 import { useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { Upload } from "lucide-react";
 import { TiptapEditor } from "@/components/tiptap-editor";
 import { useMediaUploader } from "@/components/media-uploader";
 import { toSlug } from "@/lib/utils";
@@ -191,30 +192,36 @@ export function ProductFormCard({
                   className="rounded-2xl border border-white/20 bg-white px-4 py-3 text-black"
                 />
               </div>
-              <label className="rounded-2xl border border-dashed border-white/25 bg-white/10 p-4">
+              <div className="rounded-2xl border border-dashed border-white/25 bg-white/10 p-4">
                 <div className="flex items-center justify-between gap-3">
-                  <span className="text-sm text-white/80">Gallery images</span>
+                  <span className="text-sm font-medium text-white/90">Gallery images</span>
                   <span className="text-xs text-white/55">{uploading ? "Uploading..." : "Cloudinary"}</span>
                 </div>
-                <div className="mt-3 flex flex-wrap gap-3">
-                  <input ref={fileInputRef} type="file" multiple accept="image/*" onChange={(e) => handleUpload(e.target.files)} className="w-full text-sm" />
-                  <button
-                    type="button"
-                    onClick={() => fileInputRef.current?.click()}
-                    className="rounded-full bg-white px-4 py-2 text-xs font-semibold text-maroon"
-                  >
-                    Add More Images
-                  </button>
-                </div>
-              </label>
-              <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-                {form.images.map((image) => (
-                  <div key={image} className="relative overflow-hidden rounded-2xl border border-white/20 bg-white">
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  multiple
+                  accept="image/*"
+                  onChange={(e) => handleUpload(e.target.files)}
+                  className="hidden"
+                />
+                <button
+                  type="button"
+                  onClick={() => fileInputRef.current?.click()}
+                  className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl bg-white px-4 py-3 text-xs font-semibold text-maroon transition hover:bg-white/90"
+                >
+                  <Upload className="h-4 w-4" />
+                  {uploading ? "Uploading images..." : "Choose & Upload Images"}
+                </button>
+              </div>
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
+                {form.images.map((image, idx) => (
+                  <div key={`${image}-${idx}`} className="group relative overflow-hidden rounded-2xl border border-white/20 bg-white">
                     <MediaImage src={image} alt="uploaded" width={200} height={200} className="h-24 w-full object-cover" />
                     <button
                       type="button"
                       onClick={() => removeImage(image)}
-                      className="absolute right-2 top-2 rounded-full bg-maroon px-2 py-1 text-[10px] font-semibold text-white"
+                      className="absolute right-2 top-2 rounded-full bg-maroon/90 px-2.5 py-1 text-[10px] font-semibold text-white shadow-sm transition hover:bg-red-700"
                     >
                       Remove
                     </button>

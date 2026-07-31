@@ -207,12 +207,12 @@ export function ContentForm({ resource, id, initialData, nextOrderNumber }: Cont
                 Upload files or paste image URLs. Image 1 becomes the lead visual on cards, detail pages, and banner fallback.
               </p>
             </div>
-            <div className="rounded-full border border-white/20 bg-white/10 p-3">
+            <div className="shrink-0 rounded-full border border-white/20 bg-white/10 p-3">
               <ImagePlus className="h-5 w-5" />
             </div>
           </div>
 
-          <label className="mt-5 flex cursor-pointer flex-col items-center justify-center rounded-[1.75rem] border border-dashed border-white/30 bg-white/95 px-5 py-8 text-center text-maroon transition hover:border-white hover:bg-white">
+          <label className="mt-5 flex cursor-pointer flex-col items-center justify-center rounded-[1.75rem] border border-dashed border-white/30 bg-white/95 p-5 text-center text-maroon transition hover:border-white hover:bg-white sm:p-8">
             <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-maroon text-white shadow-sm">
               <Upload className="h-5 w-5" />
             </div>
@@ -226,87 +226,141 @@ export function ContentForm({ resource, id, initialData, nextOrderNumber }: Cont
               value={manualImage}
               onChange={(e) => setManualImage(e.target.value)}
               placeholder="Paste image URL"
-              className="min-w-0 flex-1 rounded-2xl border border-white/20 bg-white px-4 py-3 text-black outline-none placeholder:text-black/35"
+              className="min-w-0 flex-1 rounded-2xl border border-white/20 bg-white px-4 py-3 text-sm text-black outline-none placeholder:text-black/35 focus:ring-2 focus:ring-white/30"
             />
-            <button type="button" onClick={addManualImage} className="rounded-2xl bg-white px-4 py-3 font-semibold text-maroon">
+            <button
+              type="button"
+              onClick={addManualImage}
+              className="flex shrink-0 items-center gap-1.5 rounded-2xl bg-white px-4 py-3 text-sm font-semibold text-maroon transition hover:bg-white/90"
+            >
               <Plus className="h-4 w-4" />
+              <span className="hidden sm:inline">Add URL</span>
             </button>
           </div>
 
-          <div className="mt-5 rounded-[1.5rem] border border-white/15 bg-white/10 p-3">
-            <div className="flex items-center justify-between gap-3">
+          <div className="mt-5 rounded-[1.5rem] border border-white/15 bg-white/10 p-3 sm:p-4">
+            <div className="flex flex-wrap items-center justify-between gap-2">
               <div>
                 <p className="text-sm font-semibold text-white">Display Sequence</p>
-                <p className="text-xs text-white/60">Drag images or use the arrows to control frontend order.</p>
+                <p className="text-xs text-white/60">Drag images or use arrows to control order.</p>
               </div>
-              <div className="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-semibold text-white/75">
+              <div className="shrink-0 rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-semibold text-white/75">
                 {images.length} image{images.length === 1 ? "" : "s"}
               </div>
             </div>
 
-          <div className="mt-4 grid gap-3">
-            {images.length ? (
-              images.map((image, index) => (
-                <div
-                  key={`${image}-${index}`}
-                  draggable
-                  onDragStart={() => setDraggedIndex(index)}
-                  onDragOver={(event) => event.preventDefault()}
-                  onDrop={() => {
-                    if (draggedIndex !== null) {
-                      reorderImage(draggedIndex, index);
-                    }
-                    setDraggedIndex(null);
-                  }}
-                  onDragEnd={() => setDraggedIndex(null)}
-                  className={`flex items-center gap-3 rounded-2xl border bg-white p-2 text-black shadow-sm transition ${
-                    draggedIndex === index ? "border-maroon/40 ring-2 ring-maroon/15" : "border-white/20"
-                  }`}
-                >
-                  <div className="flex flex-col items-center gap-1 rounded-xl bg-paper px-2 py-2 text-maroon">
-                    <GripVertical className="h-4 w-4" />
-                    <span className="text-[10px] font-semibold leading-none">#{index + 1}</span>
-                  </div>
-                  <img src={image} alt="" className="h-16 w-16 rounded-xl object-cover" />
-                  <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-medium">{image}</p>
-                    <p className="text-xs text-black/45">{index === 0 ? "Primary image" : `Image ${index + 1}`}</p>
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <button
-                      type="button"
-                      onClick={() => moveImage(index, "up")}
-                      disabled={index === 0}
-                      className="rounded-xl border border-maroon/15 p-2 text-maroon transition hover:bg-maroon/5 disabled:cursor-not-allowed disabled:opacity-35"
-                      aria-label={`Move image ${index + 1} up`}
-                    >
-                      <ArrowUp className="h-4 w-4" />
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => moveImage(index, "down")}
-                      disabled={index === images.length - 1}
-                      className="rounded-xl border border-maroon/15 p-2 text-maroon transition hover:bg-maroon/5 disabled:cursor-not-allowed disabled:opacity-35"
-                      aria-label={`Move image ${index + 1} down`}
-                    >
-                      <ArrowDown className="h-4 w-4" />
-                    </button>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => setImages((current) => current.filter((_, currentIndex) => currentIndex !== index))}
-                    className="rounded-xl border border-maroon/15 p-2 text-maroon transition hover:bg-maroon/5"
+            <div className="mt-4 grid gap-3">
+              {images.length ? (
+                images.map((image, index) => (
+                  <div
+                    key={`${image}-${index}`}
+                    draggable
+                    onDragStart={() => setDraggedIndex(index)}
+                    onDragOver={(event) => event.preventDefault()}
+                    onDrop={() => {
+                      if (draggedIndex !== null) {
+                        reorderImage(draggedIndex, index);
+                      }
+                      setDraggedIndex(null);
+                    }}
+                    onDragEnd={() => setDraggedIndex(null)}
+                    className={`flex flex-col gap-3 rounded-2xl border bg-white p-3 text-black shadow-sm transition sm:flex-row sm:items-center ${
+                      draggedIndex === index ? "border-maroon/40 ring-2 ring-maroon/15" : "border-white/20"
+                    }`}
                   >
-                    <X className="h-4 w-4" />
-                  </button>
+                    {/* Top Row on Mobile: Index Badge & Reorder / Delete Actions */}
+                    <div className="flex items-center justify-between gap-2 border-b border-black/5 pb-2 sm:border-b-0 sm:pb-0">
+                      <div className="flex items-center gap-2 rounded-xl bg-maroon/5 px-2.5 py-1 text-maroon">
+                        <GripVertical className="h-4 w-4 shrink-0 text-maroon/50" />
+                        <span className="text-xs font-bold leading-none">#{index + 1}</span>
+                        {index === 0 ? (
+                          <span className="rounded-md bg-maroon px-1.5 py-0.5 text-[10px] font-semibold text-white">
+                            Primary
+                          </span>
+                        ) : null}
+                      </div>
+
+                      {/* Touch-friendly controls for mobile */}
+                      <div className="flex items-center gap-1.5 sm:hidden">
+                        <button
+                          type="button"
+                          onClick={() => moveImage(index, "up")}
+                          disabled={index === 0}
+                          className="flex h-8 w-8 items-center justify-center rounded-lg border border-maroon/15 text-maroon transition hover:bg-maroon/5 disabled:cursor-not-allowed disabled:opacity-30"
+                          aria-label={`Move image ${index + 1} up`}
+                        >
+                          <ArrowUp className="h-4 w-4" />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => moveImage(index, "down")}
+                          disabled={index === images.length - 1}
+                          className="flex h-8 w-8 items-center justify-center rounded-lg border border-maroon/15 text-maroon transition hover:bg-maroon/5 disabled:cursor-not-allowed disabled:opacity-30"
+                          aria-label={`Move image ${index + 1} down`}
+                        >
+                          <ArrowDown className="h-4 w-4" />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setImages((current) => current.filter((_, currentIndex) => currentIndex !== index))}
+                          className="flex h-8 w-8 items-center justify-center rounded-lg border border-red-200 bg-red-50 text-red-600 transition hover:bg-red-100"
+                          aria-label={`Remove image ${index + 1}`}
+                        >
+                          <X className="h-4 w-4" />
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Image Thumbnail and Details */}
+                    <div className="flex min-w-0 flex-1 items-center gap-3">
+                      <img src={image} alt="" className="h-14 w-14 shrink-0 rounded-xl object-cover sm:h-16 sm:w-16" />
+                      <div className="min-w-0 flex-1">
+                        <p className="truncate text-xs font-medium text-black/90 sm:text-sm">{image}</p>
+                        <p className="mt-0.5 text-[11px] text-black/50">
+                          {index === 0 ? "Lead visual for cards & banners" : `Image ${index + 1}`}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Desktop Controls */}
+                    <div className="hidden items-center gap-2 sm:flex">
+                      <div className="flex flex-col gap-1">
+                        <button
+                          type="button"
+                          onClick={() => moveImage(index, "up")}
+                          disabled={index === 0}
+                          className="rounded-lg border border-maroon/15 p-1.5 text-maroon transition hover:bg-maroon/5 disabled:cursor-not-allowed disabled:opacity-35"
+                          aria-label={`Move image ${index + 1} up`}
+                        >
+                          <ArrowUp className="h-3.5 w-3.5" />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => moveImage(index, "down")}
+                          disabled={index === images.length - 1}
+                          className="rounded-lg border border-maroon/15 p-1.5 text-maroon transition hover:bg-maroon/5 disabled:cursor-not-allowed disabled:opacity-35"
+                          aria-label={`Move image ${index + 1} down`}
+                        >
+                          <ArrowDown className="h-3.5 w-3.5" />
+                        </button>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setImages((current) => current.filter((_, currentIndex) => currentIndex !== index))}
+                        className="rounded-xl border border-red-200 bg-red-50 p-2 text-red-600 transition hover:bg-red-100"
+                        aria-label={`Remove image ${index + 1}`}
+                      >
+                        <X className="h-4 w-4" />
+                      </button>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className="rounded-2xl border border-white/20 bg-white/10 px-4 py-6 text-center text-sm text-white/75">
+                  Add at least one image to publish this entry.
                 </div>
-              ))
-            ) : (
-              <div className="rounded-2xl border border-white/20 bg-white/10 px-4 py-6 text-sm text-white/75">
-                Add at least one image to publish this entry.
-              </div>
-            )}
-          </div>
+              )}
+            </div>
           </div>
         </section>
 
